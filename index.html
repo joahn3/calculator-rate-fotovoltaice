@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Rata Fotovoltaice | ElectroVerde.ro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Un pic de CSS pentru a face slider-ul mai aspectuos */
+        input[type=range] {
+            accent-color: #10B981; /* Verde ElectroVerde */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+        <div class="bg-emerald-500 p-6 text-center">
+            <h2 class="text-2xl font-bold text-white mb-2">Înlocuiește Factura cu Rata</h2>
+            <p class="text-emerald-50 text-sm">Află în 10 secunde cât te costă independența energetică cu un sistem hibrid (panouri + baterii).</p>
+        </div>
+
+        <div class="p-6">
+            <label for="factura" class="block text-gray-700 font-semibold mb-4 text-center">
+                Cât plătești acum la energia electrică lunar?
+            </label>
+            
+            <div class="flex items-center justify-center mb-4">
+                <span id="valoare-factura" class="text-4xl font-bold text-emerald-600">600</span>
+                <span class="text-xl text-gray-500 ml-2">Lei / lună</span>
+            </div>
+
+            <input type="range" id="factura" min="150" max="3000" step="50" value="600" 
+                   class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mb-8"
+                   oninput="calculeazaRata()">
+
+            <div class="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-gray-600 text-sm font-medium">Sistem recomandat:</span>
+                    <span id="rezultat-kwp" class="font-bold text-gray-800">4 kWp Hibrid</span>
+                </div>
+                
+                <div class="flex justify-between items-center mb-3 pt-3 border-t border-gray-200">
+                    <span class="text-gray-600 text-sm font-medium">Rata ta lunară estimată:</span>
+                    <span id="rezultat-rata" class="font-bold text-2xl text-emerald-600">466 Lei</span>
+                </div>
+
+                <div id="mesaj-economie" class="text-center mt-4 text-sm font-bold text-emerald-600 bg-emerald-50 py-2 rounded-lg">
+                    Ieși pe plus! Economisești 134 Lei din prima lună.
+                </div>
+            </div>
+
+            <button class="w-full mt-6 bg-gray-900 hover:bg-black text-white font-bold py-3 px-4 rounded-xl transition duration-200">
+                Vreau ofertă exactă
+            </button>
+            <p class="text-xs text-center text-gray-400 mt-3">Calculul este orientativ pe o perioadă de 60 de luni. Include TVA și instalare.</p>
+        </div>
+    </div>
+
+    <script>
+        function calculeazaRata() {
+            // Preluăm valoarea din slider
+            let factura = parseInt(document.getElementById('factura').value);
+            document.getElementById('valoare-factura').innerText = factura;
+
+            // Logica de dimensionare: Minim 3 kWp. Considerăm că 1 kWp scutește cam 150 Lei/lună.
+            let kwpRecomandat = Math.max(3, Math.ceil(factura / 150));
+            
+            // Logica de preț: Estimăm 5500 Lei per kWp instalat (sistem hibrid cu baterie mică)
+            let pretTotalSistem = kwpRecomandat * 5500;
+
+            // Logica de rată: Calcul simplificat pentru 60 de luni cu dobândă. 
+            // Un multiplicator de 0.0212 aproximează un credit de nevoi personale standard.
+            let rataLunara = Math.round(pretTotalSistem * 0.0212);
+
+            // Actualizăm UI-ul
+            document.getElementById('rezultat-kwp').innerText = kwpRecomandat + ' kWp Hibrid';
+            document.getElementById('rezultat-rata').innerText = rataLunara + ' Lei';
+
+            // Mesajul de economie psihologică
+            let mesajElement = document.getElementById('mesaj-economie');
+            if (factura > rataLunara) {
+                let economie = factura - rataLunara;
+                mesajElement.innerText = `Ieși pe plus! Economisești ${economie} Lei din prima lună.`;
+                mesajElement.className = "text-center mt-4 text-sm font-bold text-emerald-600 bg-emerald-50 py-2 rounded-lg";
+            } else {
+                mesajElement.innerText = "Devii independent energetic la același cost lunar!";
+                mesajElement.className = "text-center mt-4 text-sm font-bold text-gray-700 bg-gray-100 py-2 rounded-lg";
+            }
+        }
+
+        // Rulăm funcția o dată la încărcarea paginii pentru a seta valorile inițiale
+        window.onload = calculeazaRata;
+    </script>
+</body>
+</html>
