@@ -6,90 +6,198 @@
     <title>Calculator Rata Fotovoltaice | ElectroVerde.ro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Un pic de CSS pentru a face slider-ul mai aspectuos */
-        input[type=range] {
-            accent-color: #10B981; /* Verde ElectroVerde */
-        }
+        input[type=range] { accent-color: #10B981; }
+        .hidden-smooth { display: none; opacity: 0; transition: opacity 0.3s ease; }
+        .show-smooth { display: block; opacity: 1; transition: opacity 0.3s ease; }
     </style>
 </head>
-<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4 font-sans">
 
-    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-        <div class="bg-emerald-500 p-6 text-center">
-            <h2 class="text-2xl font-bold text-white mb-2">Înlocuiește Factura cu Rata</h2>
-            <p class="text-emerald-50 text-sm">Află în 10 secunde cât te costă independența energetică cu un sistem hibrid (panouri + baterii).</p>
+    <div class="max-w-lg w-full bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
+        <div class="bg-emerald-600 p-6 text-center">
+            <h2 class="text-2xl font-bold text-white mb-2">Configurează-ți Independența</h2>
+            <p class="text-emerald-100 text-sm">Selectează consumul tău și alege pachetul potrivit.</p>
         </div>
 
         <div class="p-6">
-            <label for="factura" class="block text-gray-700 font-semibold mb-4 text-center">
+            <label class="block text-gray-700 font-bold mb-4 text-center">
                 Cât plătești acum la energia electrică lunar?
             </label>
-            
             <div class="flex items-center justify-center mb-4">
                 <span id="valoare-factura" class="text-4xl font-bold text-emerald-600">600</span>
                 <span class="text-xl text-gray-500 ml-2">Lei / lună</span>
             </div>
-
             <input type="range" id="factura" min="150" max="3000" step="50" value="600" 
-                   class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mb-8"
+                   class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mb-6"
                    oninput="calculeazaRata()">
 
-            <div class="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-gray-600 text-sm font-medium">Sistem recomandat:</span>
-                    <span id="rezultat-kwp" class="font-bold text-gray-800">4 kWp Hibrid</span>
-                </div>
+            <label class="block text-gray-700 font-bold mb-3 text-sm uppercase tracking-wide">Alege Soluția Tehnică</label>
+            <div class="grid grid-cols-1 gap-3 mb-6">
+                <label class="flex items-center p-3 border rounded-xl cursor-pointer hover:bg-gray-50 transition border-emerald-500 bg-emerald-50" id="label-baza">
+                    <input type="radio" name="pachet" value="baza" checked class="form-radio h-5 w-5 text-emerald-600" onchange="schimbaPachet('baza', this)">
+                    <div class="ml-3">
+                        <span class="block text-sm font-bold text-gray-800">Essential Hibrid</span>
+                        <span class="block text-xs text-gray-500">Panouri + Invertor Hibrid + Baterie 5kWh</span>
+                    </div>
+                </label>
                 
-                <div class="flex justify-between items-center mb-3 pt-3 border-t border-gray-200">
-                    <span class="text-gray-600 text-sm font-medium">Rata ta lunară estimată:</span>
+                <label class="flex items-center p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition" id="label-premium">
+                    <input type="radio" name="pachet" value="premium" class="form-radio h-5 w-5 text-emerald-600" onchange="schimbaPachet('premium', this)">
+                    <div class="ml-3">
+                        <span class="block text-sm font-bold text-gray-800">Premium Backup (+ SmartGuard)</span>
+                        <span class="block text-xs text-gray-500">Essential + Funcționare la pene de curent</span>
+                    </div>
+                </label>
+
+                <label class="flex items-center p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition" id="label-auto">
+                    <input type="radio" name="pachet" value="auto" class="form-radio h-5 w-5 text-emerald-600" onchange="schimbaPachet('auto', this)">
+                    <div class="ml-3">
+                        <span class="block text-sm font-bold text-gray-800">Mobilitate (+ Stație EV)</span>
+                        <span class="block text-xs text-gray-500">Premium + Stație încărcare mașină 22kW</span>
+                    </div>
+                </label>
+            </div>
+
+            <div class="bg-gray-50 rounded-xl p-4 border border-gray-200 shadow-inner">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-gray-600 text-sm font-medium">Sistem necesar:</span>
+                    <span id="rezultat-kwp" class="font-bold text-gray-800">4 kWp</span>
+                </div>
+                <div class="flex justify-between items-center mb-3 pt-2 border-t border-gray-200">
+                    <span class="text-gray-600 text-sm font-medium">Rata lunară estimată:</span>
                     <span id="rezultat-rata" class="font-bold text-2xl text-emerald-600">466 Lei</span>
                 </div>
+                
+                <button onclick="toggleDetalii()" class="text-xs text-emerald-600 underline focus:outline-none w-full text-right mb-2">De ce acest preț? Vezi ce include sistemul.</button>
+                
+                <div id="detalii-pret" class="hidden-smooth text-xs text-gray-600 bg-white p-3 border rounded mb-2">
+                    <ul class="list-disc pl-4 space-y-1" id="lista-detalii">
+                        <li>Panouri fotovoltaice Tier 1</li>
+                        <li>Invertor Hibrid (pregătit pentru stocare)</li>
+                        <li>Baterie stocare (minim 5kWh)</li>
+                        <li>Sistem prindere acoperiș și cablaje</li>
+                        <li>Montaj autorizat, dosar prosumator și TVA inclus</li>
+                    </ul>
+                </div>
 
-                <div id="mesaj-economie" class="text-center mt-4 text-sm font-bold text-emerald-600 bg-emerald-50 py-2 rounded-lg">
-                    Ieși pe plus! Economisești 134 Lei din prima lună.
+                <div id="mesaj-economie" class="text-center mt-2 text-sm font-bold text-emerald-600 bg-emerald-100 py-2 rounded-lg">
+                    Calculăm economia...
                 </div>
             </div>
 
-            <button class="w-full mt-6 bg-gray-900 hover:bg-black text-white font-bold py-3 px-4 rounded-xl transition duration-200">
-                Vreau ofertă exactă
+            <div id="zona-formular" class="hidden-smooth mt-6 bg-gray-800 p-4 rounded-xl">
+                <p class="text-white text-sm text-center mb-3 font-medium">Lasă-ne numărul de telefon. Te sunăm cu oferta exactă, fără obligații!</p>
+                <form name="CerereOfertaFotovoltaice" method="POST" data-netlify="true" class="flex flex-col space-y-3">
+                    <input type="hidden" name="Factura_Client" id="input-factura">
+                    <input type="hidden" name="Putere_Recomandata_kWp" id="input-kwp">
+                    <input type="hidden" name="Pachet_Ales" id="input-pachet">
+                    <input type="hidden" name="Rata_Estimata" id="input-rata">
+
+                    <input type="tel" name="Telefon" placeholder="Ex: 07XX XXX XXX" required class="w-full px-4 py-3 rounded-lg text-gray-900 border-none focus:ring-2 focus:ring-emerald-500 outline-none font-bold text-center">
+                    
+                    <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-white font-bold py-3 px-4 rounded-lg transition shadow-lg">
+                        Trimite-mi Oferta
+                    </button>
+                </form>
+            </div>
+
+            <button id="btn-vreau-oferta" onclick="arataFormular()" class="w-full mt-6 bg-gray-900 hover:bg-black text-white font-bold py-4 px-4 rounded-xl transition duration-200 shadow-xl text-lg">
+                Vreau Ofertă Exactă
             </button>
-            <p class="text-xs text-center text-gray-400 mt-3">Calculul este orientativ pe o perioadă de 60 de luni. Include TVA și instalare.</p>
+            <p class="text-xs text-center text-gray-400 mt-3">Rata e estimată pe 60 de luni printr-un credit standard.</p>
         </div>
     </div>
 
     <script>
+        // Setăm prețurile estimative per kWp pentru fiecare pachet
+        const preturiPachete = {
+            baza: 5500,    // Hibrid simplu
+            premium: 6200, // + SmartGuard
+            auto: 6900     // + SmartGuard + EV
+        };
+
+        let pachetCurent = 'baza';
+
+        function schimbaPachet(numePachet, element) {
+            pachetCurent = numePachet;
+            
+            // Resetăm stilul vizual pentru toate etichetele
+            document.querySelectorAll('label[id^="label-"]').forEach(lbl => {
+                lbl.classList.remove('border-emerald-500', 'bg-emerald-50');
+                lbl.classList.add('border-gray-200');
+            });
+
+            // Adăugăm stil vizual pentru cel selectat
+            let labelSelectat = document.getElementById('label-' + numePachet);
+            labelSelectat.classList.remove('border-gray-200');
+            labelSelectat.classList.add('border-emerald-500', 'bg-emerald-50');
+
+            // Modificăm lista de detalii explicative
+            let lista = document.getElementById('lista-detalii');
+            if(numePachet === 'baza') {
+                lista.innerHTML = '<li>Panouri fotovoltaice Tier 1</li><li>Invertor Hibrid</li><li>Baterie stocare (minim 5kWh)</li><li>Montaj și dosar prosumator</li>';
+            } else if(numePachet === 'premium') {
+                lista.innerHTML = '<li>Tot ce include pachetul Essential</li><li><b>Modul SmartGuard / Backup Box</b></li><li>Garanția funcționării la pene de curent din rețea</li>';
+            } else {
+                lista.innerHTML = '<li>Tot ce include pachetul Premium</li><li><b>Stație de încărcare mașini electrice 22kW</b></li><li>Integrare inteligentă cu producția panourilor</li>';
+            }
+
+            calculeazaRata();
+        }
+
         function calculeazaRata() {
-            // Preluăm valoarea din slider
             let factura = parseInt(document.getElementById('factura').value);
             document.getElementById('valoare-factura').innerText = factura;
 
-            // Logica de dimensionare: Minim 3 kWp. Considerăm că 1 kWp scutește cam 150 Lei/lună.
+            // Calcul putere necesară
             let kwpRecomandat = Math.max(3, Math.ceil(factura / 150));
             
-            // Logica de preț: Estimăm 5500 Lei per kWp instalat (sistem hibrid cu baterie mică)
-            let pretTotalSistem = kwpRecomandat * 5500;
+            // Calcul preț pe baza pachetului
+            let pretPerKwp = preturiPachete[pachetCurent];
+            let pretTotalSistem = kwpRecomandat * pretPerKwp;
 
-            // Logica de rată: Calcul simplificat pentru 60 de luni cu dobândă. 
-            // Un multiplicator de 0.0212 aproximează un credit de nevoi personale standard.
+            // Calcul rată
             let rataLunara = Math.round(pretTotalSistem * 0.0212);
 
-            // Actualizăm UI-ul
-            document.getElementById('rezultat-kwp').innerText = kwpRecomandat + ' kWp Hibrid';
+            // Actualizare interfață
+            document.getElementById('rezultat-kwp').innerText = kwpRecomandat + ' kWp';
             document.getElementById('rezultat-rata').innerText = rataLunara + ' Lei';
 
-            // Mesajul de economie psihologică
+            // Populăm câmpurile ascunse din formular pentru a le primi pe mail
+            document.getElementById('input-factura').value = factura + " Lei";
+            document.getElementById('input-kwp').value = kwpRecomandat + " kWp";
+            document.getElementById('input-pachet').value = pachetCurent.toUpperCase();
+            document.getElementById('input-rata').value = rataLunara + " Lei";
+
+            // Mesaj de economie
             let mesajElement = document.getElementById('mesaj-economie');
             if (factura > rataLunara) {
-                let economie = factura - rataLunara;
-                mesajElement.innerText = `Ieși pe plus! Economisești ${economie} Lei din prima lună.`;
-                mesajElement.className = "text-center mt-4 text-sm font-bold text-emerald-600 bg-emerald-50 py-2 rounded-lg";
+                mesajElement.innerText = `Ieși pe plus! Economisești ${factura - rataLunara} Lei lunar.`;
+                mesajElement.className = "text-center mt-2 text-sm font-bold text-emerald-700 bg-emerald-100 py-2 rounded-lg";
             } else {
-                mesajElement.innerText = "Devii independent energetic la același cost lunar!";
-                mesajElement.className = "text-center mt-4 text-sm font-bold text-gray-700 bg-gray-100 py-2 rounded-lg";
+                mesajElement.innerText = "Cost similar, dar devii independent și crești valoarea casei!";
+                mesajElement.className = "text-center mt-2 text-sm font-bold text-gray-700 bg-gray-200 py-2 rounded-lg";
             }
         }
 
-        // Rulăm funcția o dată la încărcarea paginii pentru a seta valorile inițiale
+        function toggleDetalii() {
+            let detalii = document.getElementById('detalii-pret');
+            if(detalii.classList.contains('hidden-smooth')) {
+                detalii.classList.remove('hidden-smooth');
+                detalii.classList.add('show-smooth');
+            } else {
+                detalii.classList.remove('show-smooth');
+                detalii.classList.add('hidden-smooth');
+            }
+        }
+
+        function arataFormular() {
+            document.getElementById('btn-vreau-oferta').style.display = 'none';
+            let zonaFormular = document.getElementById('zona-formular');
+            zonaFormular.classList.remove('hidden-smooth');
+            zonaFormular.classList.add('show-smooth');
+        }
+
         window.onload = calculeazaRata;
     </script>
 </body>
