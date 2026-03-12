@@ -29,6 +29,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: var(--font-sans);
       background-color: var(--gray-100);
@@ -75,7 +76,7 @@
     .footer-legal a:hover { text-decoration: underline; }
 
     .container {
-      max-width: 1150px;
+      max-width: 1180px;
       margin: 0 auto;
       background: #fff;
       border-radius: 1.5rem;
@@ -84,6 +85,7 @@
       border: 1px solid var(--gray-200);
       width: 100%;
     }
+
     .header {
       background-color: var(--emerald-600);
       padding: 2rem;
@@ -146,14 +148,11 @@
     .mb-6 { margin-bottom: 1.5rem; }
     .mt-2 { margin-top: 0.5rem; }
     .mt-4 { margin-top: 1rem; }
-    .p-4 { padding: 1rem; }
-    .text-left { text-align: left; }
-    .flex-wrap { flex-wrap: wrap; }
-    .items-end { align-items: flex-end; }
+    .hidden { display: none !important; }
     .d-none { display: none !important; }
-    .font-bold { font-weight: 700; }
-    .font-semibold { font-weight: 600; }
-    .font-extrabold { font-weight: 800; }
+    .flex-between { display: flex; justify-content: space-between; align-items: center; }
+    .text-xs { font-size: 0.75rem; }
+    .text-sm { font-size: 0.875rem; }
 
     .text-emerald { color: var(--emerald-600); }
     .text-gray-300 { color: var(--gray-300); }
@@ -161,7 +160,6 @@
     .text-gray-500 { color: var(--gray-500); }
     .text-gray-800 { color: var(--gray-800); }
     .text-gray-900 { color: var(--gray-900); }
-    .text-white { color: #fff; }
 
     label.form-label {
       display: block;
@@ -183,6 +181,7 @@
       font-family: inherit;
       font-size: 1rem;
       transition: border-color 0.2s;
+      background: #fff;
     }
 
     input[type="number"]:focus,
@@ -201,6 +200,14 @@
       cursor: pointer;
     }
 
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--emerald-500);
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
     .input-dark {
       background: var(--gray-800);
       color: #fff;
@@ -216,7 +223,8 @@
       background: #fff;
     }
     .radio-card:hover { background: var(--gray-50); }
-    .radio-card input { display: none; }
+    .radio-card input[type="radio"] { display: none; }
+
     .radio-card-title {
       font-weight: 600;
       font-size: 0.875rem;
@@ -231,7 +239,28 @@
       background: var(--emerald-50) !important;
     }
     .card-selected .radio-card-title { color: var(--emerald-600); }
-    .border-emerald { border-color: var(--emerald-500); }
+
+    .option-tile {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      border: 1px solid var(--gray-300);
+      border-radius: 0.75rem;
+      background: #fff;
+      padding: 0.9rem 1rem;
+    }
+    .option-tile strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--gray-900);
+    }
+    .option-tile span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      margin-top: 0.1rem;
+    }
 
     .result-box {
       background: #fff;
@@ -267,7 +296,7 @@
     }
     .result-value.highlight {
       color: var(--emerald-600);
-      font-size: 1.875rem;
+      font-size: 1.85rem;
     }
     .result-value-large { font-size: 2rem; color: #fff; }
     .result-value-xl { font-size: 2.5rem; }
@@ -307,7 +336,7 @@
       transition: max-height 0.35s ease, opacity 0.25s ease;
     }
     .soft-collapse.open {
-      max-height: 1600px;
+      max-height: 2000px;
       opacity: 1;
       margin-bottom: 1rem;
     }
@@ -334,11 +363,6 @@
       font-size: 0.8rem;
       color: var(--gray-500);
     }
-
-    .hidden { display: none !important; }
-    .flex-between { display: flex; justify-content: space-between; align-items: center; }
-    .text-sm { font-size: 0.875rem; }
-    .text-xs { font-size: 0.75rem; }
 
     .cta-zone {
       background: var(--gray-900);
@@ -442,6 +466,7 @@
               <div class="radio-card-title">După factură</div>
               <div class="radio-card-desc">lei / lună</div>
             </label>
+
             <label id="label-mode-kwh" class="radio-card">
               <input type="radio" name="mod-calcul" value="kwh" onchange="setMode('kwh')" />
               <div class="radio-card-title">După consum real</div>
@@ -452,7 +477,7 @@
           <div id="box-factura">
             <div class="flex-between mb-2">
               <span id="factura-display" class="factura-display">600</span>
-              <span class="text-gray-500 font-semibold">lei / lună</span>
+              <span class="text-gray-500" style="font-weight:600;">lei / lună</span>
             </div>
             <input
               id="factura-range"
@@ -482,14 +507,14 @@
         </div>
 
         <div class="section-card">
-          <h2 class="section-title">2) Detalii tehnice</h2>
+          <h2 class="section-title">2) Detalii tehnice și comerciale</h2>
 
           <div class="grid-2">
             <div>
               <label class="form-label" for="zona-select">Zonă instalare</label>
               <select id="zona-select" onchange="calculeazaTot()">
                 <option value="bucuresti-ilfov">București / Ilfov</option>
-                <option value="sud">Sud (Călărași, Giurgiu, etc.)</option>
+                <option value="sud">Sud</option>
                 <option value="est">Est</option>
                 <option value="centru">Centru</option>
                 <option value="vest">Vest</option>
@@ -502,7 +527,7 @@
               <select id="conditii-acoperis" onchange="calculeazaTot()">
                 <option value="bun">Bune (fără umbrire majoră)</option>
                 <option value="mediu">Medii (umbrire parțială)</option>
-                <option value="dificil">Mai dificile (Est/Vest sau umbrire)</option>
+                <option value="dificil">Mai dificile</option>
                 <option value="necunoscut">Nu știu încă</option>
               </select>
             </div>
@@ -528,7 +553,7 @@
               <select id="profil-consum" onchange="calculeazaTot()">
                 <option value="zi">Mai ales ziua</option>
                 <option value="mixt">Relativ echilibrat</option>
-                <option value="seara">Mai ales seara (după 18:00)</option>
+                <option value="seara">Mai ales seara</option>
               </select>
             </div>
 
@@ -542,49 +567,70 @@
           </div>
 
           <div class="grid-2 mt-4">
-            <label class="radio-card flex-between p-4 border-emerald" for="toggle-backup">
-              <span class="text-sm font-semibold text-emerald">Vreau modul de backup (pene de curent)</span>
+            <div>
+              <label class="form-label" for="producer-select">Producător / ecosistem</label>
+              <select id="producer-select" onchange="calculeazaTot()">
+                <option value="Deye">Deye</option>
+                <option value="Huawei">Huawei</option>
+                <option value="Fronius">Fronius</option>
+                <option value="Victron">Victron</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label" for="battery-select">Pachet baterii</label>
+              <select id="battery-select" onchange="calculeazaTot()">
+                <option value="Fara Baterie">Fără baterie</option>
+                <option value="5kWh">5 kWh</option>
+                <option value="10kWh">10 kWh</option>
+                <option value="14.33kWh">14.33 kWh</option>
+                <option value="28.66kWh">28.66 kWh</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-2 mt-4">
+            <label class="option-tile" for="toggle-backup">
+              <div>
+                <strong>Modul backup / SmartGuard</strong>
+                <span>adaugă funcționare în scenariile compatibile</span>
+              </div>
               <input id="toggle-backup" type="checkbox" onchange="calculeazaTot()" />
             </label>
 
-            <label class="radio-card flex-between p-4" for="toggle-ev">
-              <span class="text-sm font-semibold">Vreau stație auto (EV)</span>
+            <label class="option-tile" for="toggle-ev">
+              <div>
+                <strong>Stație EV</strong>
+                <span>include încărcător auto în configurarea standard</span>
+              </div>
               <input id="toggle-ev" type="checkbox" onchange="calculeazaTot()" />
             </label>
           </div>
-        </div>
 
-        <div class="section-card">
-          <h2 class="section-title">3) Clasa de echipamente preferată</h2>
-          <div class="grid-3">
-            <label id="label-clasa-optimizat" class="radio-card card-selected">
-              <input type="radio" name="clasa-echipamente" value="optimizat" checked onchange="setClasa('optimizat')" />
-              <div class="radio-card-title">Smart Hibrid</div>
-              <div class="radio-card-desc">Gama Deye</div>
-            </label>
-
-            <label id="label-clasa-premium" class="radio-card">
-              <input type="radio" name="clasa-echipamente" value="premium" onchange="setClasa('premium')" />
-              <div class="radio-card-title">Premium Integrat</div>
-              <div class="radio-card-desc">Ecosistem Huawei</div>
-            </label>
-
-            <label id="label-clasa-resilience" class="radio-card">
-              <input type="radio" name="clasa-echipamente" value="resilience" onchange="setClasa('resilience')" />
-              <div class="radio-card-title">Resilience Plus</div>
-              <div class="radio-card-desc">Fronius / Victron</div>
-            </label>
+          <div class="mt-4">
+            <label class="form-label" for="manual-power-select">Putere sistem (auto sau manual)</label>
+            <select id="manual-power-select" onchange="calculeazaTot()">
+              <option value="auto">Automat recomandat</option>
+              <option value="5.2">5.2 kW (12 panouri)</option>
+              <option value="6.37">6.37 kW (14 panouri)</option>
+              <option value="7.28">7.28 kW (16 panouri)</option>
+              <option value="8.2">8.2 kW (18 panouri)</option>
+              <option value="9.1">9.1 kW (20 panouri)</option>
+              <option value="12">12 kW (26 panouri)</option>
+              <option value="15">15 kW (34 panouri)</option>
+              <option value="20">20 kW (46 panouri)</option>
+            </select>
           </div>
         </div>
       </section>
 
       <section>
         <div class="section-card section-card-highlight">
-          <div class="flex-between mb-6 flex-wrap">
+          <div class="flex-between mb-6">
             <div>
-              <h2 class="text-gray-900 font-extrabold" style="font-size: 1.5rem;">Estimare Standard „La Cheie”</h2>
-              <p class="text-xs text-emerald font-semibold">
-                Calcul orientativ, aliniat pe scenariile noastre standard de ofertare.
+              <h2 class="text-gray-900" style="font-size:1.5rem; font-weight:800;">Estimare Standard „La Cheie”</h2>
+              <p class="text-xs text-emerald" style="font-weight:700;">
+                Prețul este construit după grila standard de ofertare, pe combinația selectată.
               </p>
             </div>
           </div>
@@ -597,19 +643,19 @@
             </div>
 
             <div class="result-box">
-              <div class="result-label">Configurație propusă</div>
-              <div id="rezultat-configuratie" class="result-value highlight">4.5 kWp + Bat. 5kWh</div>
-              <div id="rezultat-kwp-interval" class="result-sub font-semibold text-gray-800">Producție estimată: ~5.000 kWh/an</div>
+              <div class="result-label">Sistem propus</div>
+              <div id="rezultat-configuratie" class="result-value highlight">5.2 kW + 12 panouri</div>
+              <div id="rezultat-kwp-interval" class="result-sub">Baterie: Fără baterie</div>
             </div>
           </div>
 
           <div class="result-box result-box-dark mt-4">
             <div class="result-label result-label-dark">
-              Valoare estimativă sistem „la cheie” (echipamente, materiale, montaj, TVA, dosar prosumator)
+              Valoare estimativă sistem „la cheie” (grilă standard)
             </div>
-            <div id="rezultat-pret" class="result-value highlight result-value-large">45.200 lei</div>
+            <div id="rezultat-pret" class="result-value highlight result-value-large">36.714,86 lei</div>
             <div id="rezultat-clasa" class="result-sub text-gray-400">
-              Include dosar prosumator și o rezervă standard pentru verificare / completare uzuală a împământării.
+              Producător: Deye • SmartGuard: Nu • EV: Nu
             </div>
           </div>
 
@@ -619,33 +665,33 @@
                 <div class="result-label result-label-emerald">
                   Rată lunară estimativă (scenariu de finanțare pe 60 luni)
                 </div>
-                <div id="rezultat-rata" class="result-value highlight result-value-xl">517 lei</div>
+                <div id="rezultat-rata" class="result-value highlight result-value-xl">778,36 lei</div>
                 <div id="rezultat-rata-sub" class="result-sub">
                   Scenariu orientativ de finanțare. Nu reprezintă ofertă de credit.
                 </div>
               </div>
             </div>
-            <div id="mesaj-comparatie" class="message-box msg-good">Calculăm diferența estimată...</div>
+            <div id="mesaj-comparatie" class="message-box msg-neutral">Calculăm diferența estimată...</div>
           </div>
         </div>
 
         <button class="accordion-btn" onclick="toggleBox('box-ce-include', this)" aria-expanded="false">
-          Vezi detaliat ce conține pachetul „La Cheie”
+          Vezi ce include scenariul selectat
         </button>
 
         <div id="box-ce-include" class="soft-collapse">
           <div class="collapse-content">
             <ul id="lista-includeri" class="lista-includeri"></ul>
             <p class="nota-subsol">
-              * Prețul include TVA 21%. Lucrările atipice (nacelă, spargere beton extinsă, trasee foarte lungi, refacere completă a prizei de pământ, lucrări electrice speciale etc.) nu sunt incluse în calculul standard și pot modifica oferta finală.
+              * Prețul este orientativ și urmează logica grilei standard. Lucrările atipice sau refacerea completă a prizei de pământ pot modifica oferta finală.
             </p>
           </div>
         </div>
 
         <div class="cta-zone">
-          <h3>Vrei să validăm configurația potrivită?</h3>
+          <h3>Vrei să validăm configurația?</h3>
           <p>
-            Avem capacitate de montaj în București / Ilfov și putem reveni cu o propunere după validarea consumului, a acoperișului și a configurației electrice.
+            Lasă-ne datele de contact și revenim cu o propunere validată pe acoperiș, consum și configurația electrică reală.
           </p>
 
           <button id="cta-btn" class="btn-primary" onclick="arataFormular()">
@@ -654,25 +700,28 @@
 
           <div id="form-zone" class="reveal-form">
             <form
-              name="CerereOfertaFotovoltaicePublic"
+              name="CerereOfertaFotovoltaicePublicExcel"
               method="POST"
               action="/multumim.html"
               data-netlify="true"
               netlify-honeypot="bot-field"
               onsubmit="return pregatesteFormularul();"
             >
-              <input type="hidden" name="form-name" value="CerereOfertaFotovoltaicePublic" />
+              <input type="hidden" name="form-name" value="CerereOfertaFotovoltaicePublicExcel" />
               <div class="d-none" aria-hidden="true">
                 <label><input name="bot-field" type="text" tabindex="-1" /></label>
               </div>
 
-              <input type="hidden" name="Sursa_Formular" value="Calculator Fotovoltaic Public" />
               <input type="hidden" name="Pagina" id="h-pagina" />
               <input type="hidden" name="Referrer" id="h-referrer" />
               <input type="hidden" name="UTM_Campaign" id="h-utm-campaign" />
               <input type="hidden" name="Consum_Lunar_kWh" id="h-kwh-lunar" />
-              <input type="hidden" name="Clasa_Echipamente" id="h-clasa" />
-              <input type="hidden" name="Configuratie_Propusa" id="h-configuratie" />
+              <input type="hidden" name="Producator" id="h-producer" />
+              <input type="hidden" name="Putere_Sistem_kW" id="h-power" />
+              <input type="hidden" name="Panouri" id="h-panels" />
+              <input type="hidden" name="Baterii" id="h-battery" />
+              <input type="hidden" name="SmartGuard" id="h-smartguard" />
+              <input type="hidden" name="EV_Charger" id="h-ev" />
               <input type="hidden" name="Pret_Estimativ_Brut_Lei" id="h-pret" />
               <input type="hidden" name="Rata_Estimativa_Lei" id="h-rata" />
 
@@ -734,7 +783,7 @@
   <footer class="brand-footer">
     <p>
       <strong>electroVerde</strong> este marcă înregistrată. Află mai multe pe
-      <a href="https://electroverde.ro" class="text-emerald font-semibold" style="text-decoration: none;">electroVerde.ro</a>.
+      <a href="https://electroverde.ro" class="text-emerald" style="text-decoration:none; font-weight:600;">electroVerde.ro</a>.
     </p>
     <p>Instalator autorizat ANRE.</p>
 
@@ -751,102 +800,117 @@
   </footer>
 
   <script>
-    const CONFIG = {
-      PRET_MEDIU_KWH: 1.30,
-      ZONE_COEFF: {
-        "bucuresti-ilfov": 1250,
-        "sud": 1280,
-        "est": 1220,
-        "centru": 1180,
-        "vest": 1210,
-        "nord": 1140
-      },
-      ACOPERIS_FACTOR: {
-        "bun": 1.00,
-        "mediu": 0.92,
-        "dificil": 0.82,
-        "necunoscut": 0.88
-      },
-
-      MATEMATICA: {
-        tva: 0.21,
-        marjaDivizor: 0.70,
-        factorFinantareStandard: 0.0212
+    const PRICE_GRID = {
+      Deye: {
+        base: {
+          "5.2": { panels: 12, gross: 36714.86 },
+          "6.37": { panels: 14, gross: 44197.84 },
+          "7.28": { panels: 16, gross: 50017.94 },
+          "8.2": { panels: 18, gross: 55902.00 },
+          "9.1": { panels: 20, gross: 61658.14 },
+          "12": { panels: 26, gross: 80205.71 },
+          "15": { panels: 34, gross: 99392.86 },
+          "20": { panels: 46, gross: 131371.43 }
+        },
+        batteryAddons: {
+          "Fara Baterie": 0,
+          "5kWh": 9507.14,
+          "10kWh": 19014.28,
+          "14.33kWh": 27247.47,
+          "28.66kWh": 54494.94
+        }
       },
 
-      COSTURI_BAZA: {
-        "optimizat": { kw: 3700, bat: 1100, label: "Smart Hibrid (Deye)" },
-        "premium": { kw: 3800, bat: 2200, label: "Premium Integrat (Huawei)" },
-        "resilience": { kw: 4300, bat: 2400, label: "Resilience Plus (Fronius / Victron)" }
+      Huawei: {
+        base: {
+          "5.2": { panels: 12, gross: 37613.71 },
+          "6.37": { panels: 14, gross: 45298.94 },
+          "7.28": { panels: 16, gross: 51276.34 },
+          "8.2": { panels: 18, gross: 57319.43 },
+          "9.1": { panels: 20, gross: 63231.14 },
+          "12": { panels: 26, gross: 82280.00 },
+          "15": { panels: 34, gross: 101985.71 },
+          "20": { panels: 46, gross: 134828.57 }
+        },
+        batteryAddons: {
+          "Fara Baterie": 0,
+          "5kWh": 19014.29,
+          "10kWh": 38028.58,
+          "14.33kWh": 54494.95,
+          "28.66kWh": 108989.89
+        }
       },
 
-      ADDONS: {
-        fixLaCheie: 2000,
-        triBase: 2500,
-        backup: 4895,
-        ev: 3700,
-        business: 2000
+      Fronius: {
+        base: {
+          "5.2": { panels: 12, gross: 42108.00 },
+          "6.37": { panels: 14, gross: 50804.44 },
+          "7.28": { panels: 16, gross: 57568.34 },
+          "8.2": { panels: 18, gross: 64406.57 },
+          "9.1": { panels: 20, gross: 71096.14 },
+          "12": { panels: 26, gross: 92651.43 },
+          "15": { panels: 34, gross: 114950.00 },
+          "20": { panels: 46, gross: 152114.29 }
+        },
+        batteryAddons: {
+          "Fara Baterie": 0,
+          "5kWh": 20742.86,
+          "10kWh": 41485.71,
+          "14.33kWh": 59449.03,
+          "28.66kWh": 118898.06
+        }
       },
 
-      BATERII_DEFAULT: {
-        "optimizat": 5,
-        "premium": 5,
-        "resilience": 10
-      },
-
-      INCLUDERI: {
-        "optimizat": [
-          "Panouri fotovoltaice Tier 1",
-          "Invertor hibrid Deye",
-          "Structură aluminiu standard",
-          "Montaj echipe proprii",
-          "Dosar prosumator și rezervă standard pentru împământare"
-        ],
-        "premium": [
-          "Panouri premium full black",
-          "Invertor hibrid Huawei Sun2000",
-          "Monitorizare și conectivitate incluse în scenariul standard",
-          "Montaj echipe proprii",
-          "Dosar prosumator și rezervă standard pentru împământare"
-        ],
-        "resilience": [
-          "Panouri premium high-efficiency",
-          "Ecosistem Fronius / Victron",
-          "Setări avansate pentru scenarii de backup",
-          "Montaj echipe proprii",
-          "Dosar prosumator și rezervă standard pentru împământare"
-        ]
+      Victron: {
+        base: {
+          "5.2": { panels: 12, gross: 36714.86 },
+          "6.37": { panels: 14, gross: 44197.84 },
+          "7.28": { panels: 16, gross: 50017.94 },
+          "8.2": { panels: 18, gross: 55902.00 },
+          "9.1": { panels: 20, gross: 61658.14 },
+          "12": { panels: 26, gross: 80205.71 },
+          "15": { panels: 34, gross: 99392.86 },
+          "20": { panels: 46, gross: 131371.43 }
+        },
+        batteryAddons: {
+          "Fara Baterie": 0,
+          "5kWh": 9507.14,
+          "10kWh": 19014.28,
+          "14.33kWh": 27247.47,
+          "28.66kWh": 54494.94
+        }
       }
     };
 
-    let state = { modCalcul: "factura", clasa: "optimizat" };
+    const SMARTGUARD_ADDON = 8461.36;
+    const EV_ADDON = 6395.71;
+    const RATE_FACTOR_60M = 0.0212;
+    const COMMISSION_FACTOR = 0.10;
+    const TVA_FACTOR = 1.21;
+
+    const ZONE_COEFF = {
+      "bucuresti-ilfov": 1250,
+      "sud": 1280,
+      "est": 1220,
+      "centru": 1180,
+      "vest": 1210,
+      "nord": 1140
+    };
+
+    const ACOPERIS_FACTOR = {
+      "bun": 1.00,
+      "mediu": 0.92,
+      "dificil": 0.82,
+      "necunoscut": 0.88
+    };
+
+    let state = { modCalcul: "factura" };
 
     function fmt(n, digits = 0) {
       return new Intl.NumberFormat("ro-RO", {
         minimumFractionDigits: digits,
         maximumFractionDigits: digits
       }).format(n);
-    }
-
-    function clampMin(n, min) {
-      return n < min ? min : n;
-    }
-
-    function setMode(mode) {
-      state.modCalcul = mode;
-      document.getElementById("label-mode-factura").classList.toggle("card-selected", mode === "factura");
-      document.getElementById("label-mode-kwh").classList.toggle("card-selected", mode === "kwh");
-      document.getElementById("box-factura").classList.toggle("hidden", mode !== "factura");
-      document.getElementById("box-kwh").classList.toggle("hidden", mode !== "kwh");
-      calculeazaTot();
-    }
-
-    function setClasa(clasa) {
-      state.clasa = clasa;
-      ["optimizat", "premium", "resilience"].forEach(key => {
-        document.getElementById(`label-clasa-${key}`).classList.toggle("card-selected", key === clasa);
-      });
-      calculeazaTot();
     }
 
     function syncFacturaFromRange() {
@@ -867,6 +931,15 @@
       document.getElementById("factura-display").textContent = fmt(val);
     }
 
+    function setMode(mode) {
+      state.modCalcul = mode;
+      document.getElementById("label-mode-factura").classList.toggle("card-selected", mode === "factura");
+      document.getElementById("label-mode-kwh").classList.toggle("card-selected", mode === "kwh");
+      document.getElementById("box-factura").classList.toggle("hidden", mode !== "factura");
+      document.getElementById("box-kwh").classList.toggle("hidden", mode !== "kwh");
+      calculeazaTot();
+    }
+
     function toggleBox(id, btn) {
       const el = document.getElementById(id);
       const isOpen = el.classList.contains("open");
@@ -880,93 +953,94 @@
       setTimeout(() => document.getElementById("telefon").focus(), 200);
     }
 
-    function colecteazaDateFormular() {
-      return {
-        factura: parseFloat(document.getElementById("factura-input").value || 0),
-        kwhManual: parseFloat(document.getElementById("kwh-input").value || 0),
-        zona: document.getElementById("zona-select").value,
-        conditii: document.getElementById("conditii-acoperis").value,
-        tipClient: document.getElementById("tip-client").value,
-        tipRetea: document.getElementById("tip-retea").value,
-        profilConsum: document.getElementById("profil-consum").value,
-        plata: document.getElementById("finantare-scenariu").value,
-        backup: document.getElementById("toggle-backup").checked,
-        ev: document.getElementById("toggle-ev").checked
-      };
+    function getConsumLunar() {
+      if (state.modCalcul === "factura") {
+        const factura = parseFloat(document.getElementById("factura-input").value || 0);
+        return factura / 1.30;
+      }
+      return parseFloat(document.getElementById("kwh-input").value || 0);
     }
 
-    function ruleazaMatematica(date) {
-      const consumLunar = state.modCalcul === "factura"
-        ? date.factura / CONFIG.PRET_MEDIU_KWH
-        : date.kwhManual;
+    function calculeazaKwpNecesar(consumLunar) {
+      const consumAnual = consumLunar * 12;
+      const zona = document.getElementById("zona-select").value;
+      const conditii = document.getElementById("conditii-acoperis").value;
+      const tipClient = document.getElementById("tip-client").value;
+      const profilConsum = document.getElementById("profil-consum").value;
+      const ev = document.getElementById("toggle-ev").checked;
 
+      let targetAcoperire = tipClient === "business" ? 0.88 : 0.85;
+      if (profilConsum === "zi") targetAcoperire += 0.05;
+      if (profilConsum === "seara") targetAcoperire -= 0.07;
+      if (ev) targetAcoperire += 0.05;
+
+      const productieSpecifica = ZONE_COEFF[zona] * ACOPERIS_FACTOR[conditii];
+      let kwp = (consumAnual * targetAcoperire) / productieSpecifica;
+      if (ev && kwp < 6) kwp = 6;
+      if (kwp < 5.2) kwp = 5.2;
+
+      return kwp;
+    }
+
+    function alegePutereSistem(kwpNecesar) {
+      const manual = document.getElementById("manual-power-select").value;
+      const options = [5.2, 6.37, 7.28, 8.2, 9.1, 12, 15, 20];
+
+      if (manual !== "auto") return parseFloat(manual);
+
+      for (const opt of options) {
+        if (kwpNecesar <= opt) return opt;
+      }
+      return 20;
+    }
+
+    function calculeazaTot() {
+      const consumLunar = getConsumLunar();
       const consumAnual = consumLunar * 12;
 
-      let targetAcoperire = date.tipClient === "business" ? 0.88 : 0.85;
-      if (date.profilConsum === "zi") targetAcoperire += 0.05;
-      if (date.profilConsum === "seara") targetAcoperire -= 0.07;
-      if (date.ev) targetAcoperire += 0.05;
+      const producer = document.getElementById("producer-select").value;
+      const battery = document.getElementById("battery-select").value;
+      const smartGuard = document.getElementById("toggle-backup").checked;
+      const ev = document.getElementById("toggle-ev").checked;
+      const plata = document.getElementById("finantare-scenariu").value;
 
-      const productieSpecifica = CONFIG.ZONE_COEFF[date.zona] * CONFIG.ACOPERIS_FACTOR[date.conditii];
-      let kwpCentral = clampMin((consumAnual * targetAcoperire) / productieSpecifica, 3);
+      const kwpNecesar = calculeazaKwpNecesar(consumLunar);
+      const selectedPower = alegePutereSistem(kwpNecesar);
+      const powerKey = String(selectedPower);
 
-      if (date.ev && kwpCentral < 6) kwpCentral = 6;
-      let kwpPropus = Math.ceil(kwpCentral * 2) / 2;
+      const system = PRICE_GRID[producer].base[powerKey];
+      const batteryAddon = PRICE_GRID[producer].batteryAddons[battery] || 0;
+      const smartAddon = smartGuard ? SMARTGUARD_ADDON : 0;
+      const evAddon = ev ? EV_ADDON : 0;
 
-      let baterieRec = CONFIG.BATERII_DEFAULT[state.clasa];
-      if (date.profilConsum === "seara" || date.backup || kwpPropus >= 9) {
-        baterieRec = Math.max(baterieRec, 10);
-      }
+      const pretBrut = system.gross + batteryAddon + smartAddon + evAddon;
+      const comision = pretBrut * COMMISSION_FACTOR;
+      const rata = pretBrut * RATE_FACTOR_60M;
 
-      const costuriBase = CONFIG.COSTURI_BAZA[state.clasa];
-      let costBazaReal =
-        (kwpPropus * costuriBase.kw) +
-        (baterieRec * costuriBase.bat) +
-        CONFIG.ADDONS.fixLaCheie;
+      const facturaReferinta = consumLunar * 1.30;
+      const diferenta = facturaReferinta - rata;
 
-      if (date.tipRetea === "tri") costBazaReal += CONFIG.ADDONS.triBase;
-      if (date.tipClient === "business") costBazaReal += CONFIG.ADDONS.business;
-      if (date.backup) costBazaReal += CONFIG.ADDONS.backup;
-      if (date.ev) costBazaReal += CONFIG.ADDONS.ev;
-
-      const pretNetVanzare = costBazaReal / CONFIG.MATEMATICA.marjaDivizor;
-      const pretBrutFinal = pretNetVanzare * (1 + CONFIG.MATEMATICA.tva);
-      const rataLunaraEstimata = pretBrutFinal * CONFIG.MATEMATICA.factorFinantareStandard;
-      const diferenta = (consumLunar * CONFIG.PRET_MEDIU_KWH) - rataLunaraEstimata;
-
-      return {
-        consumLunar,
-        consumAnual,
-        productieSpecifica,
-        kwpPropus,
-        baterieRec,
-        pretBrutFinal,
-        rataLunaraEstimata,
-        diferenta,
-        costLabel: costuriBase.label
-      };
-    }
-
-    function actualizeazaInterfata(rezultate, plata) {
-      document.getElementById("rezultat-consum-lunar").textContent = `${fmt(rezultate.consumLunar)} kWh/lună`;
-      document.getElementById("rezultat-consum-anual").textContent = `~${fmt(rezultate.consumAnual)} kWh/an`;
-      document.getElementById("rezultat-configuratie").textContent = `${fmt(rezultate.kwpPropus, 1)} kWp + Bat. ${rezultate.baterieRec}kWh`;
-      document.getElementById("rezultat-kwp-interval").textContent = `Producție estimată: ~${fmt(rezultate.kwpPropus * rezultate.productieSpecifica)} kWh/an`;
-      document.getElementById("rezultat-pret").textContent = `${fmt(rezultate.pretBrutFinal)} lei`;
+      // UI
+      document.getElementById("rezultat-consum-lunar").textContent = `${fmt(consumLunar)} kWh/lună`;
+      document.getElementById("rezultat-consum-anual").textContent = `~${fmt(consumAnual)} kWh/an`;
+      document.getElementById("rezultat-configuratie").textContent = `${fmt(selectedPower, 2)} kW + ${system.panels} panouri`;
+      document.getElementById("rezultat-kwp-interval").textContent = `Baterie: ${battery}`;
+      document.getElementById("rezultat-pret").textContent = `${fmt(pretBrut, 2)} lei`;
+      document.getElementById("rezultat-clasa").textContent =
+        `Producător: ${producer} • SmartGuard: ${smartGuard ? "Da" : "Nu"} • EV: ${ev ? "Da" : "Nu"}`;
 
       const msgBox = document.getElementById("mesaj-comparatie");
-
       if (plata === "cash") {
         document.getElementById("rezultat-rata").textContent = "Plată integrală";
         document.getElementById("rezultat-rata-sub").textContent = "Scenariu fără finanțare. Configurația finală se validează separat.";
-        msgBox.textContent = "Plata integrală elimină costul finanțării și poate fi avantajoasă în funcție de profilul tău de consum.";
-        msgBox.className = "message-box msg-good";
+        msgBox.textContent = `Comision orientativ partener: ${fmt(comision, 2)} lei (neafișat clientului).`;
+        msgBox.className = "message-box msg-neutral";
       } else {
-        document.getElementById("rezultat-rata").textContent = `${fmt(rezultate.rataLunaraEstimata)} lei`;
+        document.getElementById("rezultat-rata").textContent = `${fmt(rata, 2)} lei`;
         document.getElementById("rezultat-rata-sub").textContent = "Scenariu orientativ de finanțare. Nu reprezintă ofertă de credit.";
 
-        if (rezultate.diferenta > 0) {
-          msgBox.innerHTML = `Diferența estimată față de factura de referință este de aproximativ <strong>${fmt(rezultate.diferenta)} lei/lună</strong>, în scenariul selectat.`;
+        if (diferenta > 0) {
+          msgBox.innerHTML = `Diferența estimată față de factura de referință este de aproximativ <strong>${fmt(diferenta, 2)} lei/lună</strong>.`;
           msgBox.className = "message-box msg-good";
         } else {
           msgBox.innerHTML = `Rata estimativă este apropiată sau peste factura actuală, însă configurația finală poate fi optimizată după validarea tehnică.`;
@@ -976,42 +1050,43 @@
 
       const ul = document.getElementById("lista-includeri");
       ul.innerHTML = "";
-      CONFIG.INCLUDERI[state.clasa].forEach(item => {
+      [
+        `${system.panels} panouri fotovoltaice`,
+        `Sistem ${producer} în configurația standard`,
+        `Pachet baterie: ${battery}`,
+        `SmartGuard / backup: ${smartGuard ? "Da" : "Nu"}`,
+        `Stație EV: ${ev ? "Da" : "Nu"}`,
+        `Dosar prosumator`,
+        `Montaj standard la cheie`,
+        `Rezervă standard pentru verificare / completare uzuală a împământării`
+      ].forEach(item => {
         const li = document.createElement("li");
         li.textContent = item;
         ul.appendChild(li);
       });
 
-      const liB = document.createElement("li");
-      liB.innerHTML = `<strong>Baterie de ${rezultate.baterieRec} kWh</strong> în configurația propusă.`;
-      ul.appendChild(liB);
+      // Hidden fields
+      document.getElementById("h-kwh-lunar").value = fmt(consumLunar, 0);
+      document.getElementById("h-producer").value = producer;
+      document.getElementById("h-power").value = fmt(selectedPower, 2);
+      document.getElementById("h-panels").value = system.panels;
+      document.getElementById("h-battery").value = battery;
+      document.getElementById("h-smartguard").value = smartGuard ? "Da" : "Nu";
+      document.getElementById("h-ev").value = ev ? "Da" : "Nu";
+      document.getElementById("h-pret").value = fmt(pretBrut, 2);
+      document.getElementById("h-rata").value = plata === "cash" ? "Cash" : fmt(rata, 2);
 
-      document.getElementById("h-kwh-lunar").value = fmt(rezultate.consumLunar, 0);
-      document.getElementById("h-clasa").value = rezultate.costLabel;
-      document.getElementById("h-configuratie").value = `${rezultate.kwpPropus} kWp + ${rezultate.baterieRec}kWh baterie`;
-      document.getElementById("h-pret").value = fmt(rezultate.pretBrutFinal, 0);
-      document.getElementById("h-rata").value = plata === "cash" ? "Cash" : fmt(rezultate.rataLunaraEstimata, 0);
-    }
-
-    function actualizeazaTracking() {
       document.getElementById("h-pagina").value = window.location.href;
       document.getElementById("h-referrer").value = document.referrer || "";
       const params = new URLSearchParams(window.location.search);
       document.getElementById("h-utm-campaign").value = params.get("utm_campaign") || "";
     }
 
-    function calculeazaTot() {
-      const date = colecteazaDateFormular();
-      const rezultate = ruleazaMatematica(date);
-      actualizeazaInterfata(rezultate, date.plata);
-      actualizeazaTracking();
-    }
-
     function pregatesteFormularul() {
       calculeazaTot();
-      const b = document.getElementById("submit-btn");
-      b.disabled = true;
-      b.textContent = "Analizăm...";
+      const btn = document.getElementById("submit-btn");
+      btn.disabled = true;
+      btn.textContent = "Analizăm...";
       return true;
     }
 
