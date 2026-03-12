@@ -638,7 +638,7 @@
 
   <script>
     const CONFIG = {
-      PRET_MEDIU_KWH: 1.30, // ipoteză comercială configurabilă
+      PRET_MEDIU_KWH: 1.30, // Poți lăsa 1.30 sau crește la 1.40 pentru 2026
       ZONE_COEFF: {
         "bucuresti-ilfov": 1250,
         "sud": 1280,
@@ -653,55 +653,57 @@
         "dificil": 0.82,
         "necunoscut": 0.88
       },
+      // Actualizat cu noul factor de calcul TBI (0.0212 pentru 60 luni)
       FINANTARE_FACTORS: {
-        "favorabil": 0.0200,
-        "standard": 0.0211,
-        "prudent": 0.0230
+        "favorabil": 0.0205, // O rată ușor mai optimistă
+        "standard": 0.0212,  // FACTORUL TBI REAL
+        "prudent": 0.0225    // Dacă clientul are un istoric de credit mai slab
       },
       CLASE: {
         "optimizat": {
-          label: "Optimizat Hibrid",
-          costPerKwp: 4450,
+          label: "Optimizat Hibrid (Deye)",
+          // Cost de piață cu TVA 21% inclus și marja ta (aprox. 10.500 RON/kWp la sisteme mici)
+          costPerKwp: 6200, 
           baseBattery: 5,
           includes: [
-            "panouri fotovoltaice Tier 1",
-            "invertor hibrid din clasa Deye / GoodWe",
-            "baterie de stocare de bază inclusă în scenariul de pachet",
-            "structură standard, protecții, cablaje uzuale, montaj și dosar de prosumator"
+            "Panouri fotovoltaice Tier 1",
+            "Invertor hibrid Deye (echipat pentru viitor)",
+            "Baterie de stocare de 5kWh inclusă",
+            "Sistem LA CHEIE: Montaj, Împământare OBO, Dosar Prosumator incluse."
           ]
         },
         "premium": {
-          label: "Premium Huawei",
-          costPerKwp: 5950,
+          label: "Premium (Huawei)",
+          costPerKwp: 6800, 
           baseBattery: 5,
           includes: [
-            "panouri fotovoltaice Tier 1",
-            "ecosistem premium din clasa Huawei",
-            "baterie de stocare de bază inclusă în scenariul de pachet",
-            "structură standard, protecții, cablaje uzuale, montaj și dosar de prosumator"
+            "Panouri fotovoltaice Tier 1",
+            "Invertor hibrid Huawei Sun2000",
+            "Baterie Huawei Luna2000 5kWh inclusă",
+            "Sistem LA CHEIE: Montaj, Împământare OBO, Dosar Prosumator incluse."
           ]
         },
         "resilience": {
-          label: "Resilience Plus",
-          costPerKwp: 6500,
+          label: "Resilience Plus (Fronius/Victron)",
+          costPerKwp: 7900,
           baseBattery: 10,
           includes: [
-            "arhitectură orientată pe reziliență și backup avansat",
-            "echipamente premium din clasa Victron / Huawei backup extins",
-            "capacitate de stocare mai generoasă în scenariul de pornire",
-            "structură standard, protecții, cablaje uzuale, montaj și dosar de prosumator"
+            "Panouri fotovoltaice Premium",
+            "Invertor Fronius / Sistem Victron",
+            "Stocare extinsă: 10kWh pentru backup complet",
+            "Sistem LA CHEIE: Montaj, Împământare OBO, Dosar Prosumator incluse."
           ]
         }
       },
       ADDONS: {
-        triBase: 2200,
-        backupMono: 1800,
-        backupTri: 4100,
-        evBundle: 4500,
-        extraBattery5kWh: 7000,
-        businessEngineering: 1200
+        triBase: 2500,          // Trecerea de la Mono la Tri
+        backupMono: 4895,       // Modul SmartGuard sau similar (cu montaj și TVA)
+        backupTri: 5500,        // Backup trifazat
+        evBundle: 3700,         // Stație EV 22kW (cu montaj și TVA)
+        extraBattery5kWh: 10500, // Preț adăugare modul baterie 5kWh (cu marjă + TVA 21%)
+        businessEngineering: 2000
       },
-      WHATSAPP_NUMBER: "40700000000" // <-- înlocuiește cu numărul vostru
+      WHATSAPP_NUMBER: "40725969006" // <-- ÎNLOCUIEȘTE CU NUMĂRUL TĂU REAL
     };
 
     let state = {
