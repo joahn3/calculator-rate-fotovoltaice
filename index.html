@@ -6,7 +6,7 @@
   <title>Calculator Fotovoltaic Inteligent | electroVerde</title>
   <meta
     name="description"
-    content="Află rapid o estimare orientativă pentru un sistem fotovoltaic complet, cu configurare la cheie și scenariu de finanțare pe 60 luni."
+    content="Află rapid o estimare orientativă pentru un sistem fotovoltaic complet, la cheie, cu scenariu de finanțare pe 60 luni."
   />
 
   <style>
@@ -15,6 +15,8 @@
       --emerald-100: #d1fae5;
       --emerald-500: #10b981;
       --emerald-600: #059669;
+      --amber-100: #fef3c7;
+      --amber-700: #b45309;
       --gray-50: #f9fafb;
       --gray-100: #f3f4f6;
       --gray-200: #e5e7eb;
@@ -138,11 +140,6 @@
       .grid-2 { grid-template-columns: 1fr 1fr; }
     }
 
-    .grid-3 { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
-    @media (min-width: 768px) {
-      .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    }
-
     .mb-2 { margin-bottom: 0.5rem; }
     .mb-4 { margin-bottom: 1rem; }
     .mb-6 { margin-bottom: 1.5rem; }
@@ -153,7 +150,6 @@
     .flex-between { display: flex; justify-content: space-between; align-items: center; }
     .text-xs { font-size: 0.75rem; }
     .text-sm { font-size: 0.875rem; }
-
     .text-emerald { color: var(--emerald-600); }
     .text-gray-300 { color: var(--gray-300); }
     .text-gray-400 { color: var(--gray-400); }
@@ -234,6 +230,7 @@
       font-size: 0.75rem;
       color: var(--gray-500);
     }
+
     .card-selected {
       border-color: var(--emerald-500) !important;
       background: var(--emerald-50) !important;
@@ -438,6 +435,11 @@
       background: var(--gray-200);
       color: var(--gray-700);
     }
+    .msg-warn {
+      background: var(--amber-100);
+      color: var(--amber-700);
+      border: 1px solid #fcd34d;
+    }
   </style>
 </head>
 <body>
@@ -564,14 +566,13 @@
                 <option value="cash">Plată integrală (cash)</option>
               </select>
             </div>
-          </div>
 
-          <div class="grid-2 mt-4">
             <div>
               <label class="form-label" for="producer-select">Producător / ecosistem</label>
-              <select id="producer-select" onchange="calculeazaTot()">
+              <select id="producer-select" onchange="onProducerChange()">
                 <option value="Deye">Deye</option>
                 <option value="Huawei">Huawei</option>
+                <option value="Huawei S1">Huawei S1</option>
                 <option value="Fronius">Fronius</option>
                 <option value="Victron">Victron</option>
               </select>
@@ -579,13 +580,7 @@
 
             <div>
               <label class="form-label" for="battery-select">Pachet baterii</label>
-              <select id="battery-select" onchange="calculeazaTot()">
-                <option value="Fara Baterie">Fără baterie</option>
-                <option value="5kWh">5 kWh</option>
-                <option value="10kWh">10 kWh</option>
-                <option value="14.33kWh">14.33 kWh</option>
-                <option value="28.66kWh">28.66 kWh</option>
-              </select>
+              <select id="battery-select" onchange="onBatteryChange()"></select>
             </div>
           </div>
 
@@ -593,9 +588,9 @@
             <label class="option-tile" for="toggle-backup">
               <div>
                 <strong>Modul backup / SmartGuard</strong>
-                <span>adaugă funcționare în scenariile compatibile</span>
+                <span>backup-ul util necesită baterie compatibilă</span>
               </div>
-              <input id="toggle-backup" type="checkbox" onchange="calculeazaTot()" />
+              <input id="toggle-backup" type="checkbox" onchange="onSmartGuardChange()" />
             </label>
 
             <label class="option-tile" for="toggle-ev">
@@ -621,6 +616,8 @@
               <option value="20">20 kW (46 panouri)</option>
             </select>
           </div>
+
+          <div id="ux-notice" class="message-box msg-warn hidden"></div>
         </div>
       </section>
 
@@ -645,7 +642,7 @@
             <div class="result-box">
               <div class="result-label">Sistem propus</div>
               <div id="rezultat-configuratie" class="result-value highlight">5.2 kW + 12 panouri</div>
-              <div id="rezultat-kwp-interval" class="result-sub">Baterie: Fără baterie</div>
+              <div id="rezultat-baterie" class="result-sub">Baterie: Fără baterie</div>
             </div>
           </div>
 
@@ -660,7 +657,7 @@
           </div>
 
           <div class="result-box result-box-emerald mt-4">
-            <div class="flex-between items-end">
+            <div class="flex-between" style="align-items:flex-end;">
               <div>
                 <div class="result-label result-label-emerald">
                   Rată lunară estimativă (scenariu de finanțare pe 60 luni)
@@ -725,7 +722,7 @@
               <input type="hidden" name="Pret_Estimativ_Brut_Lei" id="h-pret" />
               <input type="hidden" name="Rata_Estimativa_Lei" id="h-rata" />
 
-              <div class="grid-2 mb-6 text-left">
+              <div class="grid-2 mb-6" style="text-align:left;">
                 <div>
                   <label class="form-label text-gray-300" for="telefon">Telefonul tău</label>
                   <input
@@ -754,8 +751,8 @@
                 </div>
               </div>
 
-              <div class="mb-6 text-left">
-                <label class="form-label text-gray-300" style="font-size: 0.8rem; line-height: 1.6;">
+              <div class="mb-6" style="text-align:left;">
+                <label class="form-label text-gray-300" style="font-size:0.8rem; line-height:1.6;">
                   <input
                     type="checkbox"
                     name="Consimtamant"
@@ -801,7 +798,8 @@
 
   <script>
     const PRICE_GRID = {
-      Deye: {
+      "Deye": {
+        mode: "base-plus-addons",
         base: {
           "5.2": { panels: 12, gross: 36714.86 },
           "6.37": { panels: 14, gross: 44197.84 },
@@ -821,7 +819,8 @@
         }
       },
 
-      Huawei: {
+      "Huawei": {
+        mode: "base-plus-addons",
         base: {
           "5.2": { panels: 12, gross: 37613.71 },
           "6.37": { panels: 14, gross: 45298.94 },
@@ -841,7 +840,126 @@
         }
       },
 
-      Fronius: {
+      "Huawei S1": {
+        mode: "direct",
+        prices: {
+          "5.2": {
+            panels: 12,
+            batteries: {
+              "5kWh": 53913.95,
+              "7kWh": 60713.72,
+              "10kWh": 64113.95,
+              "12kWh": 70913.72,
+              "14kWh": 77713.49,
+              "15kWh": 74313.95,
+              "17kWh": 81113.72,
+              "19kWh": 87913.49,
+              "21kWh": 94713.26
+            }
+          },
+          "6.37": {
+            panels: 14,
+            batteries: {
+              "5kWh": 61599.18,
+              "7kWh": 68398.95,
+              "10kWh": 71799.18,
+              "12kWh": 78598.95,
+              "14kWh": 85398.72,
+              "15kWh": 81999.18,
+              "17kWh": 88798.95,
+              "19kWh": 95598.72,
+              "21kWh": 102398.49
+            }
+          },
+          "7.28": {
+            panels: 16,
+            batteries: {
+              "5kWh": 67576.58,
+              "7kWh": 74376.35,
+              "10kWh": 77776.58,
+              "12kWh": 84576.35,
+              "14kWh": 91376.12,
+              "15kWh": 87976.58,
+              "17kWh": 94776.35,
+              "19kWh": 101576.12,
+              "21kWh": 108375.89
+            }
+          },
+          "8.2": {
+            panels: 18,
+            batteries: {
+              "5kWh": 73619.67,
+              "7kWh": 80419.44,
+              "10kWh": 83819.67,
+              "12kWh": 90619.44,
+              "14kWh": 97419.21,
+              "15kWh": 94019.67,
+              "17kWh": 100819.44,
+              "19kWh": 107619.21,
+              "21kWh": 114418.98
+            }
+          },
+          "9.1": {
+            panels: 20,
+            batteries: {
+              "5kWh": 79531.38,
+              "7kWh": 86331.15,
+              "10kWh": 89731.38,
+              "12kWh": 96531.15,
+              "14kWh": 103330.92,
+              "15kWh": 99931.38,
+              "17kWh": 106731.15,
+              "19kWh": 113530.92,
+              "21kWh": 120330.69
+            }
+          },
+          "12": {
+            panels: 26,
+            batteries: {
+              "5kWh": 98580.24,
+              "7kWh": 105380.01,
+              "10kWh": 108780.24,
+              "12kWh": 115580.01,
+              "14kWh": 122379.78,
+              "15kWh": 118980.24,
+              "17kWh": 125780.01,
+              "19kWh": 132579.78,
+              "21kWh": 139379.55
+            }
+          },
+          "15": {
+            panels: 34,
+            batteries: {
+              "5kWh": 118285.95,
+              "7kWh": 125085.72,
+              "10kWh": 128485.95,
+              "12kWh": 135285.72,
+              "14kWh": 142085.49,
+              "15kWh": 138685.95,
+              "17kWh": 145485.72,
+              "19kWh": 152285.49,
+              "21kWh": 159085.26
+            }
+          },
+          "20": {
+            panels: 46,
+            batteries: {
+              "5kWh": 151128.81,
+              "7kWh": 157928.58,
+              "10kWh": 161328.81,
+              "12kWh": 168128.58,
+              "14kWh": 174928.35,
+              "15kWh": 171528.81,
+              "17kWh": 178328.58,
+              "19kWh": 185128.35,
+              "21kWh": 191928.12
+            }
+          }
+        }
+      },
+
+      "Fronius": {
+        mode: "base-plus-addons",
         base: {
           "5.2": { panels: 12, gross: 42108.00 },
           "6.37": { panels: 14, gross: 50804.44 },
@@ -861,7 +979,8 @@
         }
       },
 
-      Victron: {
+      "Victron": {
+        mode: "base-plus-addons",
         base: {
           "5.2": { panels: 12, gross: 36714.86 },
           "6.37": { panels: 14, gross: 44197.84 },
@@ -882,11 +1001,12 @@
       }
     };
 
-    const SMARTGUARD_ADDON = 8461.36;
-    const EV_ADDON = 6395.71;
+    const ADDONS = {
+      smartGuard: 8461.35,
+      ev: 6395.71
+    };
+
     const RATE_FACTOR_60M = 0.0212;
-    const COMMISSION_FACTOR = 0.10;
-    const TVA_FACTOR = 1.21;
 
     const ZONE_COEFF = {
       "bucuresti-ilfov": 1250,
@@ -903,6 +1023,8 @@
       "dificil": 0.82,
       "necunoscut": 0.88
     };
+
+    const POWER_OPTIONS = [5.2, 6.37, 7.28, 8.2, 9.1, 12, 15, 20];
 
     let state = { modCalcul: "factura" };
 
@@ -953,6 +1075,103 @@
       setTimeout(() => document.getElementById("telefon").focus(), 200);
     }
 
+    function showNotice(text) {
+      const box = document.getElementById("ux-notice");
+      box.textContent = text;
+      box.classList.remove("hidden");
+    }
+
+    function clearNotice() {
+      const box = document.getElementById("ux-notice");
+      box.textContent = "";
+      box.classList.add("hidden");
+    }
+
+    function getProducer() {
+      return document.getElementById("producer-select").value;
+    }
+
+    function getAvailableBatteries(producer) {
+      const config = PRICE_GRID[producer];
+      if (config.mode === "base-plus-addons") {
+        return Object.keys(config.batteryAddons);
+      }
+
+      // Huawei S1 - luăm bateria din primul power bucket
+      const firstPowerKey = Object.keys(config.prices)[0];
+      return Object.keys(config.prices[firstPowerKey].batteries);
+    }
+
+    function getMinValidBattery(producer) {
+      const batteries = getAvailableBatteries(producer).filter(b => b !== "Fara Baterie");
+      if (!batteries.length) return null;
+
+      const orderValue = (battery) => {
+        const numeric = parseFloat(String(battery).replace("kWh", "").replace(",", "."));
+        return isNaN(numeric) ? 999 : numeric;
+      };
+
+      batteries.sort((a, b) => orderValue(a) - orderValue(b));
+      return batteries[0];
+    }
+
+    function populateBatteryOptions(producer, preserveValue = true) {
+      const select = document.getElementById("battery-select");
+      const previous = preserveValue ? select.value : "";
+      const batteries = getAvailableBatteries(producer);
+
+      select.innerHTML = "";
+
+      batteries.forEach(battery => {
+        const opt = document.createElement("option");
+        opt.value = battery;
+        opt.textContent = battery === "Fara Baterie" ? "Fără baterie" : battery.replace("kWh", " kWh");
+        select.appendChild(opt);
+      });
+
+      if (preserveValue && batteries.includes(previous)) {
+        select.value = previous;
+      } else {
+        select.value = batteries[0];
+      }
+    }
+
+    function ensureBackupBattery(autoMessage = true) {
+      const producer = getProducer();
+      const batterySelect = document.getElementById("battery-select");
+      const smartGuard = document.getElementById("toggle-backup").checked;
+      const currentBattery = batterySelect.value;
+
+      if (smartGuard && currentBattery === "Fara Baterie") {
+        const minBattery = getMinValidBattery(producer);
+        if (minBattery) {
+          batterySelect.value = minBattery;
+          if (autoMessage) {
+            showNotice("Pentru funcția de backup este necesară o baterie. Am selectat automat capacitatea minimă compatibilă.");
+          }
+        }
+      }
+    }
+
+    function onProducerChange() {
+      clearNotice();
+      populateBatteryOptions(getProducer(), true);
+      ensureBackupBattery(false);
+      calculeazaTot();
+    }
+
+    function onBatteryChange() {
+      clearNotice();
+      ensureBackupBattery(true);
+      calculeazaTot();
+    }
+
+    function onSmartGuardChange() {
+      clearNotice();
+      ensureBackupBattery(true);
+      calculeazaTot();
+    }
+
     function getConsumLunar() {
       if (state.modCalcul === "factura") {
         const factura = parseFloat(document.getElementById("factura-input").value || 0);
@@ -976,6 +1195,7 @@
 
       const productieSpecifica = ZONE_COEFF[zona] * ACOPERIS_FACTOR[conditii];
       let kwp = (consumAnual * targetAcoperire) / productieSpecifica;
+
       if (ev && kwp < 6) kwp = 6;
       if (kwp < 5.2) kwp = 5.2;
 
@@ -984,47 +1204,79 @@
 
     function alegePutereSistem(kwpNecesar) {
       const manual = document.getElementById("manual-power-select").value;
-      const options = [5.2, 6.37, 7.28, 8.2, 9.1, 12, 15, 20];
-
       if (manual !== "auto") return parseFloat(manual);
 
-      for (const opt of options) {
+      for (const opt of POWER_OPTIONS) {
         if (kwpNecesar <= opt) return opt;
       }
       return 20;
+    }
+
+    function powerKey(value) {
+      return String(value);
+    }
+
+    function calculeazaPretBrut(producer, selectedPower, battery, smartGuard, ev) {
+      const config = PRICE_GRID[producer];
+      const pKey = powerKey(selectedPower);
+
+      if (config.mode === "base-plus-addons") {
+        const base = config.base[pKey];
+        if (!base) return null;
+
+        const batteryAddon = config.batteryAddons[battery] ?? 0;
+        return base.gross + batteryAddon + (smartGuard ? ADDONS.smartGuard : 0) + (ev ? ADDONS.ev : 0);
+      }
+
+      const bucket = config.prices[pKey];
+      if (!bucket) return null;
+      const direct = bucket.batteries[battery];
+      if (direct == null) return null;
+
+      return direct + (smartGuard ? ADDONS.smartGuard : 0) + (ev ? ADDONS.ev : 0);
+    }
+
+    function getPanelsForSelection(producer, selectedPower) {
+      const config = PRICE_GRID[producer];
+      const pKey = powerKey(selectedPower);
+
+      if (config.mode === "base-plus-addons") {
+        return config.base[pKey].panels;
+      }
+      return config.prices[pKey].panels;
     }
 
     function calculeazaTot() {
       const consumLunar = getConsumLunar();
       const consumAnual = consumLunar * 12;
 
-      const producer = document.getElementById("producer-select").value;
+      const producer = getProducer();
       const battery = document.getElementById("battery-select").value;
       const smartGuard = document.getElementById("toggle-backup").checked;
       const ev = document.getElementById("toggle-ev").checked;
       const plata = document.getElementById("finantare-scenariu").value;
 
+      ensureBackupBattery(false);
+      const finalBattery = document.getElementById("battery-select").value;
+
       const kwpNecesar = calculeazaKwpNecesar(consumLunar);
       const selectedPower = alegePutereSistem(kwpNecesar);
-      const powerKey = String(selectedPower);
+      const panels = getPanelsForSelection(producer, selectedPower);
+      const pretBrut = calculeazaPretBrut(producer, selectedPower, finalBattery, smartGuard, ev);
 
-      const system = PRICE_GRID[producer].base[powerKey];
-      const batteryAddon = PRICE_GRID[producer].batteryAddons[battery] || 0;
-      const smartAddon = smartGuard ? SMARTGUARD_ADDON : 0;
-      const evAddon = ev ? EV_ADDON : 0;
+      if (pretBrut == null) {
+        showNotice("Combinația selectată nu există în grila curentă. Verifică producătorul, bateria și puterea.");
+        return;
+      }
 
-      const pretBrut = system.gross + batteryAddon + smartAddon + evAddon;
-      const comision = pretBrut * COMMISSION_FACTOR;
       const rata = pretBrut * RATE_FACTOR_60M;
-
       const facturaReferinta = consumLunar * 1.30;
       const diferenta = facturaReferinta - rata;
 
-      // UI
       document.getElementById("rezultat-consum-lunar").textContent = `${fmt(consumLunar)} kWh/lună`;
       document.getElementById("rezultat-consum-anual").textContent = `~${fmt(consumAnual)} kWh/an`;
-      document.getElementById("rezultat-configuratie").textContent = `${fmt(selectedPower, 2)} kW + ${system.panels} panouri`;
-      document.getElementById("rezultat-kwp-interval").textContent = `Baterie: ${battery}`;
+      document.getElementById("rezultat-configuratie").textContent = `${fmt(selectedPower, 2)} kW + ${panels} panouri`;
+      document.getElementById("rezultat-baterie").textContent = `Baterie: ${finalBattery === "Fara Baterie" ? "Fără baterie" : finalBattery.replace("kWh", " kWh")}`;
       document.getElementById("rezultat-pret").textContent = `${fmt(pretBrut, 2)} lei`;
       document.getElementById("rezultat-clasa").textContent =
         `Producător: ${producer} • SmartGuard: ${smartGuard ? "Da" : "Nu"} • EV: ${ev ? "Da" : "Nu"}`;
@@ -1033,7 +1285,7 @@
       if (plata === "cash") {
         document.getElementById("rezultat-rata").textContent = "Plată integrală";
         document.getElementById("rezultat-rata-sub").textContent = "Scenariu fără finanțare. Configurația finală se validează separat.";
-        msgBox.textContent = `Comision orientativ partener: ${fmt(comision, 2)} lei (neafișat clientului).`;
+        msgBox.textContent = "Plata integrală elimină costul finanțării; oferta finală se validează după verificarea tehnică.";
         msgBox.className = "message-box msg-neutral";
       } else {
         document.getElementById("rezultat-rata").textContent = `${fmt(rata, 2)} lei`;
@@ -1051,9 +1303,9 @@
       const ul = document.getElementById("lista-includeri");
       ul.innerHTML = "";
       [
-        `${system.panels} panouri fotovoltaice`,
+        `${panels} panouri fotovoltaice`,
         `Sistem ${producer} în configurația standard`,
-        `Pachet baterie: ${battery}`,
+        `Pachet baterie: ${finalBattery === "Fara Baterie" ? "Fără baterie" : finalBattery.replace("kWh", " kWh")}`,
         `SmartGuard / backup: ${smartGuard ? "Da" : "Nu"}`,
         `Stație EV: ${ev ? "Da" : "Nu"}`,
         `Dosar prosumator`,
@@ -1069,8 +1321,8 @@
       document.getElementById("h-kwh-lunar").value = fmt(consumLunar, 0);
       document.getElementById("h-producer").value = producer;
       document.getElementById("h-power").value = fmt(selectedPower, 2);
-      document.getElementById("h-panels").value = system.panels;
-      document.getElementById("h-battery").value = battery;
+      document.getElementById("h-panels").value = panels;
+      document.getElementById("h-battery").value = finalBattery;
       document.getElementById("h-smartguard").value = smartGuard ? "Da" : "Nu";
       document.getElementById("h-ev").value = ev ? "Da" : "Nu";
       document.getElementById("h-pret").value = fmt(pretBrut, 2);
@@ -1092,6 +1344,7 @@
 
     window.onload = function () {
       syncFacturaFromRange();
+      populateBatteryOptions(getProducer(), false);
       calculeazaTot();
     };
   </script>
