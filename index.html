@@ -8,7 +8,6 @@
     name="description"
     content="Află rapid o estimare orientativă pentru un sistem fotovoltaic complet, la cheie, cu scenariu de finanțare pe 60 luni."
   />
-
   <style>
     :root {
       --emerald-50: #ecfdf5;
@@ -29,9 +28,7 @@
       --gray-900: #111827;
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: var(--font-sans);
       background-color: var(--gray-100);
@@ -42,7 +39,6 @@
       flex-direction: column;
       min-height: 100vh;
     }
-
     .brand-header { text-align: center; padding-bottom: 1.5rem; }
     .brand-logo {
       font-size: 2rem;
@@ -52,7 +48,6 @@
       text-decoration: none;
     }
     .brand-logo span { color: var(--gray-900); }
-
     .brand-footer {
       margin-top: auto;
       text-align: center;
@@ -87,7 +82,6 @@
       border: 1px solid var(--gray-200);
       width: 100%;
     }
-
     .header {
       background-color: var(--emerald-600);
       padding: 2rem;
@@ -105,7 +99,6 @@
       max-width: 820px;
       margin: 0 auto;
     }
-
     .grid-main { display: grid; gap: 1.5rem; padding: 1.5rem; }
     @media (min-width: 1024px) {
       .grid-main {
@@ -113,7 +106,6 @@
         padding: 2rem;
       }
     }
-
     .section-card {
       background: var(--gray-50);
       border: 1px solid var(--gray-200);
@@ -121,41 +113,33 @@
       padding: 1.25rem;
       margin-bottom: 1.5rem;
     }
-
     .section-card-highlight {
       background: #fff;
-      box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.03);
+      box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.03);
       border-top: 4px solid var(--emerald-500);
     }
-
     .section-title {
       font-weight: 700;
       font-size: 1.125rem;
       margin-bottom: 1rem;
       color: var(--gray-800);
     }
-
     .grid-2 { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-    @media (min-width: 768px) {
-      .grid-2 { grid-template-columns: 1fr 1fr; }
-    }
-
+    @media (min-width: 768px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
     .mb-2 { margin-bottom: 0.5rem; }
     .mb-4 { margin-bottom: 1rem; }
     .mb-6 { margin-bottom: 1.5rem; }
-    .mt-2 { margin-top: 0.5rem; }
     .mt-4 { margin-top: 1rem; }
     .hidden { display: none !important; }
     .d-none { display: none !important; }
     .flex-between { display: flex; justify-content: space-between; align-items: center; }
     .text-xs { font-size: 0.75rem; }
-    .text-sm { font-size: 0.875rem; }
-    .text-emerald { color: var(--emerald-600); }
     .text-gray-300 { color: var(--gray-300); }
     .text-gray-400 { color: var(--gray-400); }
     .text-gray-500 { color: var(--gray-500); }
     .text-gray-800 { color: var(--gray-800); }
     .text-gray-900 { color: var(--gray-900); }
+    .text-emerald { color: var(--emerald-600); }
 
     label.form-label {
       display: block;
@@ -164,12 +148,7 @@
       color: var(--gray-700);
       margin-bottom: 0.5rem;
     }
-
-    input[type="number"],
-    input[type="text"],
-    input[type="tel"],
-    select,
-    textarea {
+    input[type="number"], input[type="text"], input[type="tel"], select, textarea {
       width: 100%;
       border-radius: 0.75rem;
       border: 1px solid var(--gray-300);
@@ -179,23 +158,16 @@
       transition: border-color 0.2s;
       background: #fff;
     }
-
-    input[type="number"]:focus,
-    input[type="text"]:focus,
-    input[type="tel"]:focus,
-    select:focus,
-    textarea:focus {
+    input[type="number"]:focus, input[type="text"]:focus, input[type="tel"]:focus, select:focus, textarea:focus {
       outline: none;
       border-color: var(--emerald-500);
       box-shadow: 0 0 0 3px var(--emerald-100);
     }
-
     input[type="range"] {
       width: 100%;
       accent-color: var(--emerald-500);
       cursor: pointer;
     }
-
     input[type="checkbox"] {
       width: 18px;
       height: 18px;
@@ -203,13 +175,11 @@
       cursor: pointer;
       flex: 0 0 auto;
     }
-
     .input-dark {
       background: var(--gray-800);
       color: #fff;
       border-color: var(--gray-600);
     }
-
     .radio-card {
       border: 1px solid var(--gray-200);
       border-radius: 0.75rem;
@@ -220,7 +190,6 @@
     }
     .radio-card:hover { background: var(--gray-50); }
     .radio-card input[type="radio"] { display: none; }
-
     .radio-card-title {
       font-weight: 600;
       font-size: 0.875rem;
@@ -230,7 +199,6 @@
       font-size: 0.75rem;
       color: var(--gray-500);
     }
-
     .card-selected {
       border-color: var(--emerald-500) !important;
       background: var(--emerald-50) !important;
@@ -274,7 +242,6 @@
       background: var(--emerald-50);
       border: 2px solid var(--emerald-500);
     }
-
     .result-label {
       font-size: 0.75rem;
       text-transform: uppercase;
@@ -285,7 +252,6 @@
     }
     .result-label-dark { color: var(--gray-300); }
     .result-label-emerald { color: var(--emerald-600); }
-
     .result-value {
       font-size: 1.5rem;
       font-weight: 700;
@@ -297,13 +263,11 @@
     }
     .result-value-large { font-size: 2rem; color: #fff; }
     .result-value-xl { font-size: 2.5rem; }
-
     .result-sub {
       font-size: 0.875rem;
       color: var(--gray-500);
       margin-top: 0.25rem;
     }
-
     .factura-display {
       font-size: 1.8rem;
       font-weight: 700;
@@ -325,7 +289,6 @@
       transition: background 0.2s;
     }
     .accordion-btn:hover { background: var(--gray-50); }
-
     .soft-collapse {
       max-height: 0;
       opacity: 0;
@@ -337,7 +300,6 @@
       opacity: 1;
       margin-bottom: 1rem;
     }
-
     .collapse-content {
       background: #fff;
       border: 1px solid var(--gray-200);
@@ -347,14 +309,12 @@
       color: var(--gray-700);
       margin-top: -0.25rem;
     }
-
     .lista-includeri {
       padding-left: 1.25rem;
       margin-top: 0.5rem;
       line-height: 1.6;
       color: var(--gray-800);
     }
-
     .nota-subsol {
       margin-top: 1rem;
       font-size: 0.8rem;
@@ -383,7 +343,6 @@
       margin-left: auto;
       margin-right: auto;
     }
-
     .btn-primary {
       display: block;
       width: 100%;
@@ -405,7 +364,6 @@
       background: var(--emerald-600);
       transform: translateY(-2px);
     }
-
     .reveal-form {
       max-height: 0;
       opacity: 0;
@@ -418,7 +376,6 @@
       opacity: 1;
       margin-top: 1rem;
     }
-
     .message-box {
       padding: 1rem;
       border-radius: 0.75rem;
@@ -569,13 +526,7 @@
 
             <div>
               <label class="form-label" for="producer-select">Producător / ecosistem</label>
-              <select id="producer-select" onchange="onProducerChange()">
-                <option value="Deye">Deye</option>
-                <option value="Huawei">Huawei</option>
-                <option value="Huawei S1">Huawei S1</option>
-                <option value="Fronius">Fronius</option>
-                <option value="Victron">Victron</option>
-              </select>
+              <select id="producer-select" onchange="onProducerChange()"></select>
             </div>
 
             <div>
@@ -604,17 +555,7 @@
 
           <div class="mt-4">
             <label class="form-label" for="manual-power-select">Putere sistem (auto sau manual)</label>
-            <select id="manual-power-select" onchange="calculeazaTot()">
-              <option value="auto">Automat recomandat</option>
-              <option value="5.2">5.2 kW (12 panouri)</option>
-              <option value="6.37">6.37 kW (14 panouri)</option>
-              <option value="7.28">7.28 kW (16 panouri)</option>
-              <option value="8.2">8.2 kW (18 panouri)</option>
-              <option value="9.1">9.1 kW (20 panouri)</option>
-              <option value="12">12 kW (26 panouri)</option>
-              <option value="15">15 kW (34 panouri)</option>
-              <option value="20">20 kW (46 panouri)</option>
-            </select>
+            <select id="manual-power-select" onchange="calculeazaTot()"></select>
           </div>
 
           <div id="ux-notice" class="message-box msg-warn hidden"></div>
@@ -627,7 +568,7 @@
             <div>
               <h2 class="text-gray-900" style="font-size:1.5rem; font-weight:800;">Estimare Standard „La Cheie”</h2>
               <p class="text-xs text-emerald" style="font-weight:700;">
-                Prețul este construit după grila standard de ofertare, pe combinația selectată.
+                Prețul este construit după grila standard Ecoline, pe combinația selectată.
               </p>
             </div>
           </div>
@@ -797,216 +738,7 @@
   </footer>
 
   <script>
-    const PRICE_GRID = {
-      "Deye": {
-        mode: "base-plus-addons",
-        base: {
-          "5.2": { panels: 12, gross: 36714.86 },
-          "6.37": { panels: 14, gross: 44197.84 },
-          "7.28": { panels: 16, gross: 50017.94 },
-          "8.2": { panels: 18, gross: 55902.00 },
-          "9.1": { panels: 20, gross: 61658.14 },
-          "12": { panels: 26, gross: 80205.71 },
-          "15": { panels: 34, gross: 99392.86 },
-          "20": { panels: 46, gross: 131371.43 }
-        },
-        batteryAddons: {
-          "Fara Baterie": 0,
-          "5kWh": 9507.14,
-          "10kWh": 19014.28,
-          "14.33kWh": 27247.47,
-          "28.66kWh": 54494.94
-        }
-      },
-
-      "Huawei": {
-        mode: "base-plus-addons",
-        base: {
-          "5.2": { panels: 12, gross: 37613.71 },
-          "6.37": { panels: 14, gross: 45298.94 },
-          "7.28": { panels: 16, gross: 51276.34 },
-          "8.2": { panels: 18, gross: 57319.43 },
-          "9.1": { panels: 20, gross: 63231.14 },
-          "12": { panels: 26, gross: 82280.00 },
-          "15": { panels: 34, gross: 101985.71 },
-          "20": { panels: 46, gross: 134828.57 }
-        },
-        batteryAddons: {
-          "Fara Baterie": 0,
-          "5kWh": 19014.29,
-          "10kWh": 38028.58,
-          "14.33kWh": 54494.95,
-          "28.66kWh": 108989.89
-        }
-      },
-
-      "Huawei S1": {
-        mode: "direct",
-        prices: {
-          "5.2": {
-            panels: 12,
-            batteries: {
-              "5kWh": 53913.95,
-              "7kWh": 60713.72,
-              "10kWh": 64113.95,
-              "12kWh": 70913.72,
-              "14kWh": 77713.49,
-              "15kWh": 74313.95,
-              "17kWh": 81113.72,
-              "19kWh": 87913.49,
-              "21kWh": 94713.26
-            }
-          },
-          "6.37": {
-            panels: 14,
-            batteries: {
-              "5kWh": 61599.18,
-              "7kWh": 68398.95,
-              "10kWh": 71799.18,
-              "12kWh": 78598.95,
-              "14kWh": 85398.72,
-              "15kWh": 81999.18,
-              "17kWh": 88798.95,
-              "19kWh": 95598.72,
-              "21kWh": 102398.49
-            }
-          },
-          "7.28": {
-            panels: 16,
-            batteries: {
-              "5kWh": 67576.58,
-              "7kWh": 74376.35,
-              "10kWh": 77776.58,
-              "12kWh": 84576.35,
-              "14kWh": 91376.12,
-              "15kWh": 87976.58,
-              "17kWh": 94776.35,
-              "19kWh": 101576.12,
-              "21kWh": 108375.89
-            }
-          },
-          "8.2": {
-            panels: 18,
-            batteries: {
-              "5kWh": 73619.67,
-              "7kWh": 80419.44,
-              "10kWh": 83819.67,
-              "12kWh": 90619.44,
-              "14kWh": 97419.21,
-              "15kWh": 94019.67,
-              "17kWh": 100819.44,
-              "19kWh": 107619.21,
-              "21kWh": 114418.98
-            }
-          },
-          "9.1": {
-            panels: 20,
-            batteries: {
-              "5kWh": 79531.38,
-              "7kWh": 86331.15,
-              "10kWh": 89731.38,
-              "12kWh": 96531.15,
-              "14kWh": 103330.92,
-              "15kWh": 99931.38,
-              "17kWh": 106731.15,
-              "19kWh": 113530.92,
-              "21kWh": 120330.69
-            }
-          },
-          "12": {
-            panels: 26,
-            batteries: {
-              "5kWh": 98580.24,
-              "7kWh": 105380.01,
-              "10kWh": 108780.24,
-              "12kWh": 115580.01,
-              "14kWh": 122379.78,
-              "15kWh": 118980.24,
-              "17kWh": 125780.01,
-              "19kWh": 132579.78,
-              "21kWh": 139379.55
-            }
-          },
-          "15": {
-            panels: 34,
-            batteries: {
-              "5kWh": 118285.95,
-              "7kWh": 125085.72,
-              "10kWh": 128485.95,
-              "12kWh": 135285.72,
-              "14kWh": 142085.49,
-              "15kWh": 138685.95,
-              "17kWh": 145485.72,
-              "19kWh": 152285.49,
-              "21kWh": 159085.26
-            }
-          },
-          "20": {
-            panels: 46,
-            batteries: {
-              "5kWh": 151128.81,
-              "7kWh": 157928.58,
-              "10kWh": 161328.81,
-              "12kWh": 168128.58,
-              "14kWh": 174928.35,
-              "15kWh": 171528.81,
-              "17kWh": 178328.58,
-              "19kWh": 185128.35,
-              "21kWh": 191928.12
-            }
-          }
-        }
-      },
-
-      "Fronius": {
-        mode: "base-plus-addons",
-        base: {
-          "5.2": { panels: 12, gross: 42108.00 },
-          "6.37": { panels: 14, gross: 50804.44 },
-          "7.28": { panels: 16, gross: 57568.34 },
-          "8.2": { panels: 18, gross: 64406.57 },
-          "9.1": { panels: 20, gross: 71096.14 },
-          "12": { panels: 26, gross: 92651.43 },
-          "15": { panels: 34, gross: 114950.00 },
-          "20": { panels: 46, gross: 152114.29 }
-        },
-        batteryAddons: {
-          "Fara Baterie": 0,
-          "5kWh": 20742.86,
-          "10kWh": 41485.71,
-          "14.33kWh": 59449.03,
-          "28.66kWh": 118898.06
-        }
-      },
-
-      "Victron": {
-        mode: "base-plus-addons",
-        base: {
-          "5.2": { panels: 12, gross: 36714.86 },
-          "6.37": { panels: 14, gross: 44197.84 },
-          "7.28": { panels: 16, gross: 50017.94 },
-          "8.2": { panels: 18, gross: 55902.00 },
-          "9.1": { panels: 20, gross: 61658.14 },
-          "12": { panels: 26, gross: 80205.71 },
-          "15": { panels: 34, gross: 99392.86 },
-          "20": { panels: 46, gross: 131371.43 }
-        },
-        batteryAddons: {
-          "Fara Baterie": 0,
-          "5kWh": 9507.14,
-          "10kWh": 19014.28,
-          "14.33kWh": 27247.47,
-          "28.66kWh": 54494.94
-        }
-      }
-    };
-
-    const ADDONS = {
-      smartGuard: 8461.35,
-      ev: 6395.71
-    };
-
-    const RATE_FACTOR_60M = 0.0212;
+    let GRID = null;
 
     const ZONE_COEFF = {
       "bucuresti-ilfov": 1250,
@@ -1023,8 +755,6 @@
       "dificil": 0.82,
       "necunoscut": 0.88
     };
-
-    const POWER_OPTIONS = [5.2, 6.37, 7.28, 8.2, 9.1, 12, 15, 20];
 
     let state = { modCalcul: "factura" };
 
@@ -1092,27 +822,31 @@
     }
 
     function getAvailableBatteries(producer) {
-      const config = PRICE_GRID[producer];
-      if (config.mode === "base-plus-addons") {
-        return Object.keys(config.batteryAddons);
-      }
-
-      // Huawei S1 - luăm bateria din primul power bucket
-      const firstPowerKey = Object.keys(config.prices)[0];
-      return Object.keys(config.prices[firstPowerKey].batteries);
+      return GRID.producers[producer].battery_options;
     }
 
     function getMinValidBattery(producer) {
-      const batteries = getAvailableBatteries(producer).filter(b => b !== "Fara Baterie");
-      if (!batteries.length) return null;
+      const options = getAvailableBatteries(producer).filter(x => x !== "Fara Baterie");
+      if (!options.length) return null;
 
       const orderValue = (battery) => {
-        const numeric = parseFloat(String(battery).replace("kWh", "").replace(",", "."));
-        return isNaN(numeric) ? 999 : numeric;
+        const n = parseFloat(String(battery).replace("kWh", "").replace(",", "."));
+        return isNaN(n) ? 999 : n;
       };
 
-      batteries.sort((a, b) => orderValue(a) - orderValue(b));
-      return batteries[0];
+      options.sort((a, b) => orderValue(a) - orderValue(b));
+      return options[0];
+    }
+
+    function populateProducerOptions() {
+      const select = document.getElementById("producer-select");
+      select.innerHTML = "";
+      Object.keys(GRID.producers).forEach(prod => {
+        const opt = document.createElement("option");
+        opt.value = prod;
+        opt.textContent = prod;
+        select.appendChild(opt);
+      });
     }
 
     function populateBatteryOptions(producer, preserveValue = true) {
@@ -1136,13 +870,33 @@
       }
     }
 
+    function populatePowerOptions() {
+      const select = document.getElementById("manual-power-select");
+      const powerSet = new Set();
+
+      Object.values(GRID.producers).forEach(prod => {
+        prod.power_options.forEach(p => powerSet.add(p));
+      });
+
+      const powers = Array.from(powerSet).sort((a, b) => a - b);
+
+      select.innerHTML = '<option value="auto">Automat recomandat</option>';
+      powers.forEach(p => {
+        const opt = document.createElement("option");
+        opt.value = String(p);
+        opt.textContent = `${fmt(p, 2)} kW`;
+        select.appendChild(opt);
+      });
+    }
+
     function ensureBackupBattery(autoMessage = true) {
       const producer = getProducer();
-      const batterySelect = document.getElementById("battery-select");
       const smartGuard = document.getElementById("toggle-backup").checked;
-      const currentBattery = batterySelect.value;
+      const batterySelect = document.getElementById("battery-select");
 
-      if (smartGuard && currentBattery === "Fara Baterie") {
+      if (!smartGuard) return;
+
+      if (batterySelect.value === "Fara Baterie") {
         const minBattery = getMinValidBattery(producer);
         if (minBattery) {
           batterySelect.value = minBattery;
@@ -1175,7 +929,7 @@
     function getConsumLunar() {
       if (state.modCalcul === "factura") {
         const factura = parseFloat(document.getElementById("factura-input").value || 0);
-        return factura / 1.30;
+        return factura / GRID.meta.assumed_kwh_price;
       }
       return parseFloat(document.getElementById("kwh-input").value || 0);
     }
@@ -1196,87 +950,80 @@
       const productieSpecifica = ZONE_COEFF[zona] * ACOPERIS_FACTOR[conditii];
       let kwp = (consumAnual * targetAcoperire) / productieSpecifica;
 
+      const producer = getProducer();
+      const minPower = Math.min(...GRID.producers[producer].power_options);
       if (ev && kwp < 6) kwp = 6;
-      if (kwp < 5.2) kwp = 5.2;
+      if (kwp < minPower) kwp = minPower;
 
       return kwp;
     }
 
     function alegePutereSistem(kwpNecesar) {
+      const producer = getProducer();
+      const available = [...GRID.producers[producer].power_options].sort((a,b)=>a-b);
       const manual = document.getElementById("manual-power-select").value;
-      if (manual !== "auto") return parseFloat(manual);
 
-      for (const opt of POWER_OPTIONS) {
-        if (kwpNecesar <= opt) return opt;
-      }
-      return 20;
-    }
-
-    function powerKey(value) {
-      return String(value);
-    }
-
-    function calculeazaPretBrut(producer, selectedPower, battery, smartGuard, ev) {
-      const config = PRICE_GRID[producer];
-      const pKey = powerKey(selectedPower);
-
-      if (config.mode === "base-plus-addons") {
-        const base = config.base[pKey];
-        if (!base) return null;
-
-        const batteryAddon = config.batteryAddons[battery] ?? 0;
-        return base.gross + batteryAddon + (smartGuard ? ADDONS.smartGuard : 0) + (ev ? ADDONS.ev : 0);
+      if (manual !== "auto") {
+        const manualNum = parseFloat(manual);
+        if (available.includes(manualNum)) return manualNum;
       }
 
-      const bucket = config.prices[pKey];
-      if (!bucket) return null;
-      const direct = bucket.batteries[battery];
-      if (direct == null) return null;
-
-      return direct + (smartGuard ? ADDONS.smartGuard : 0) + (ev ? ADDONS.ev : 0);
+      for (const p of available) {
+        if (kwpNecesar <= p) return p;
+      }
+      return available[available.length - 1];
     }
 
-    function getPanelsForSelection(producer, selectedPower) {
-      const config = PRICE_GRID[producer];
-      const pKey = powerKey(selectedPower);
+    function lookupScenario(producer, selectedPower, battery, smartGuard, ev) {
+      const powerKey = String(selectedPower).replace(/\.0$/, "");
+      const powerBucket = GRID.producers[producer].prices[powerKey];
+      if (!powerBucket) return null;
 
-      if (config.mode === "base-plus-addons") {
-        return config.base[pKey].panels;
-      }
-      return config.prices[pKey].panels;
+      const batteryBucket = powerBucket.batteries[battery];
+      if (!batteryBucket) return null;
+
+      const gross = batteryBucket[smartGuard ? "Da" : "Nu"][ev ? "Da" : "Nu"];
+      if (gross == null) return null;
+
+      return {
+        gross,
+        panels: powerBucket.panels
+      };
     }
 
     function calculeazaTot() {
+      if (!GRID) return;
+
       const consumLunar = getConsumLunar();
       const consumAnual = consumLunar * 12;
 
       const producer = getProducer();
-      const battery = document.getElementById("battery-select").value;
       const smartGuard = document.getElementById("toggle-backup").checked;
       const ev = document.getElementById("toggle-ev").checked;
       const plata = document.getElementById("finantare-scenariu").value;
 
       ensureBackupBattery(false);
-      const finalBattery = document.getElementById("battery-select").value;
+      const battery = document.getElementById("battery-select").value;
 
       const kwpNecesar = calculeazaKwpNecesar(consumLunar);
       const selectedPower = alegePutereSistem(kwpNecesar);
-      const panels = getPanelsForSelection(producer, selectedPower);
-      const pretBrut = calculeazaPretBrut(producer, selectedPower, finalBattery, smartGuard, ev);
+      const scenario = lookupScenario(producer, selectedPower, battery, smartGuard, ev);
 
-      if (pretBrut == null) {
+      if (!scenario) {
         showNotice("Combinația selectată nu există în grila curentă. Verifică producătorul, bateria și puterea.");
         return;
       }
 
-      const rata = pretBrut * RATE_FACTOR_60M;
-      const facturaReferinta = consumLunar * 1.30;
+      const pretBrut = scenario.gross;
+      const panels = scenario.panels;
+      const rata = pretBrut * GRID.meta.rate_factor_60m;
+      const facturaReferinta = consumLunar * GRID.meta.assumed_kwh_price;
       const diferenta = facturaReferinta - rata;
 
       document.getElementById("rezultat-consum-lunar").textContent = `${fmt(consumLunar)} kWh/lună`;
       document.getElementById("rezultat-consum-anual").textContent = `~${fmt(consumAnual)} kWh/an`;
       document.getElementById("rezultat-configuratie").textContent = `${fmt(selectedPower, 2)} kW + ${panels} panouri`;
-      document.getElementById("rezultat-baterie").textContent = `Baterie: ${finalBattery === "Fara Baterie" ? "Fără baterie" : finalBattery.replace("kWh", " kWh")}`;
+      document.getElementById("rezultat-baterie").textContent = `Baterie: ${battery === "Fara Baterie" ? "Fără baterie" : battery.replace("kWh", " kWh")}`;
       document.getElementById("rezultat-pret").textContent = `${fmt(pretBrut, 2)} lei`;
       document.getElementById("rezultat-clasa").textContent =
         `Producător: ${producer} • SmartGuard: ${smartGuard ? "Da" : "Nu"} • EV: ${ev ? "Da" : "Nu"}`;
@@ -1305,7 +1052,7 @@
       [
         `${panels} panouri fotovoltaice`,
         `Sistem ${producer} în configurația standard`,
-        `Pachet baterie: ${finalBattery === "Fara Baterie" ? "Fără baterie" : finalBattery.replace("kWh", " kWh")}`,
+        `Pachet baterie: ${battery === "Fara Baterie" ? "Fără baterie" : battery.replace("kWh", " kWh")}`,
         `SmartGuard / backup: ${smartGuard ? "Da" : "Nu"}`,
         `Stație EV: ${ev ? "Da" : "Nu"}`,
         `Dosar prosumator`,
@@ -1317,17 +1064,15 @@
         ul.appendChild(li);
       });
 
-      // Hidden fields
       document.getElementById("h-kwh-lunar").value = fmt(consumLunar, 0);
       document.getElementById("h-producer").value = producer;
       document.getElementById("h-power").value = fmt(selectedPower, 2);
       document.getElementById("h-panels").value = panels;
-      document.getElementById("h-battery").value = finalBattery;
+      document.getElementById("h-battery").value = battery;
       document.getElementById("h-smartguard").value = smartGuard ? "Da" : "Nu";
       document.getElementById("h-ev").value = ev ? "Da" : "Nu";
       document.getElementById("h-pret").value = fmt(pretBrut, 2);
       document.getElementById("h-rata").value = plata === "cash" ? "Cash" : fmt(rata, 2);
-
       document.getElementById("h-pagina").value = window.location.href;
       document.getElementById("h-referrer").value = document.referrer || "";
       const params = new URLSearchParams(window.location.search);
@@ -1342,11 +1087,18 @@
       return true;
     }
 
-    window.onload = function () {
+    async function init() {
+      const response = await fetch('./ecoline_web_grid_2026.json', { cache: 'no-store' });
+      GRID = await response.json();
+
+      populateProducerOptions();
+      populatePowerOptions();
       syncFacturaFromRange();
       populateBatteryOptions(getProducer(), false);
       calculeazaTot();
-    };
+    }
+
+    window.onload = init;
   </script>
 </body>
 </html>
