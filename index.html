@@ -6,7 +6,7 @@
   <title>Calculator Fotovoltaic Inteligent | electroVerde</title>
   <meta
     name="description"
-    content="Află rapid o estimare orientativă pentru un sistem fotovoltaic complet, la cheie, cu finanțare TBI direct pe 60 luni."
+    content="Află rapid o estimare orientativă pentru un sistem fotovoltaic complet, la cheie, cu finanțare TBI direct pe 60 luni și configurare validată pentru leaduri mai bune."
   />
   <style>
     :root {
@@ -450,6 +450,97 @@
       color: var(--amber-700);
       border: 1px solid #fcd34d;
     }
+
+    button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed !important;
+      transform: none !important;
+    }
+
+    .helper-text {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--gray-500);
+      line-height: 1.5;
+    }
+
+    .form-summary {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 1rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+    @media (min-width: 768px) {
+      .form-summary-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .form-summary-label {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--gray-400);
+      margin-bottom: 0.15rem;
+      font-weight: 700;
+    }
+    .form-summary-value {
+      display: block;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .privacy-note {
+      margin-top: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      line-height: 1.55;
+    }
+
+    .form-note {
+      margin-top: 0.8rem;
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 767px) {
+      body { padding: 0.6rem; }
+      .brand-header { padding-bottom: 1rem; }
+      .brand-logo { font-size: 1.7rem; }
+      .header { padding: 1.35rem 1rem; }
+      .header h1 { font-size: 1.45rem; }
+      .header p { font-size: 0.94rem; }
+      .grid-main { padding: 1rem; gap: 1rem; }
+      .section-card { padding: 1rem; margin-bottom: 1rem; }
+      .cta-zone { padding: 1.15rem; }
+      .cta-zone h3 { font-size: 1.2rem; }
+      .result-value-xl { font-size: 2rem; }
+      .result-value-large { font-size: 1.65rem; }
+      .btn-primary { padding: 1rem; font-size: 0.98rem; }
+      .accordion-btn { padding: 0.9rem 1rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -706,12 +797,23 @@
             >
               <input type="hidden" name="form-name" value="CerereOfertaFotovoltaicePublicDirect" />
               <div class="d-none" aria-hidden="true">
-                <label><input name="bot-field" type="text" tabindex="-1" /></label>
+                <label><input name="bot-field" type="text" tabindex="-1" autocomplete="off" /></label>
+              </div>
+              <div class="d-none" aria-hidden="true">
+                <label><input name="website-field" id="website-field" type="text" tabindex="-1" autocomplete="off" /></label>
               </div>
 
               <input type="hidden" name="Pagina" id="h-pagina" />
               <input type="hidden" name="Referrer" id="h-referrer" />
               <input type="hidden" name="UTM_Campaign" id="h-utm-campaign" />
+              <input type="hidden" name="UTM_Source" id="h-utm-source" />
+              <input type="hidden" name="UTM_Medium" id="h-utm-medium" />
+              <input type="hidden" name="UTM_Content" id="h-utm-content" />
+              <input type="hidden" name="UTM_Term" id="h-utm-term" />
+              <input type="hidden" name="JS_Enabled" id="h-js-enabled" value="true" />
+              <input type="hidden" name="Page_Loaded_At" id="h-page-loaded-at" />
+              <input type="hidden" name="Form_Opened_At" id="h-form-opened-at" />
+              <input type="hidden" name="Submit_Latency_Seconds" id="h-submit-latency" />
               <input type="hidden" name="Consum_Lunar_kWh" id="h-kwh-lunar" />
               <input type="hidden" name="Producator" id="h-producer" />
               <input type="hidden" name="Putere_Sistem_kW" id="h-power" />
@@ -723,6 +825,23 @@
               <input type="hidden" name="Rata_Estimativa_Lei" id="h-rata" />
               <input type="hidden" name="Eligibil_TBI_Standard" id="h-tbi-eligibility" />
               <input type="hidden" name="Avans_Minim_Peste_Plafon" id="h-advance" />
+
+              <div class="form-summary" id="form-summary" aria-live="polite">
+                <div class="form-summary-grid">
+                  <div>
+                    <span class="form-summary-label">Configurație</span>
+                    <span class="form-summary-value" id="form-summary-config">—</span>
+                  </div>
+                  <div>
+                    <span class="form-summary-label">Preț direct</span>
+                    <span class="form-summary-value" id="form-summary-price">—</span>
+                  </div>
+                  <div>
+                    <span class="form-summary-label">Finanțare</span>
+                    <span class="form-summary-value" id="form-summary-finance">—</span>
+                  </div>
+                </div>
+              </div>
 
               <div class="grid-2 mb-6" style="text-align:left;">
                 <div>
@@ -777,16 +896,18 @@
                     required
                     style="width:auto; margin-right:8px;"
                   />
-                  Sunt de acord să fiu contactat pentru ofertă și cu prelucrarea datelor în acest scop.
+                  Sunt de acord să fiu contactat prin telefon și/sau email pentru ofertă și cu prelucrarea datelor în acest scop.
                   <a href="/politica-de-confidentialitate/" class="text-emerald" style="font-weight:700; text-decoration:none;">
                     Politica de Confidențialitate
                   </a>
                 </label>
+                <p class="privacy-note">Nu trimitem spam. Folosim datele strict pentru configurarea sistemului, verificarea eligibilității și revenirea cu oferta potrivită.</p>
               </div>
 
               <button type="submit" id="submit-btn" class="btn-primary">
                 Trimite cererea către echipa noastră
               </button>
+              <p class="form-note">Estimarea rămâne orientativă până la validarea acoperișului, tabloului electric și a lucrărilor speciale.</p>
             </form>
           </div>
         </div>
@@ -832,7 +953,13 @@
       "necunoscut": 0.88
     };
 
-    let state = { modCalcul: "factura" };
+    let state = { modCalcul: "factura", pageLoadedAt: Date.now(), formOpenedAt: null, submitLocked: false };
+
+    const SECURITY = {
+      fetchTimeoutMs: 8000,
+      minPageMsBeforeSubmit: 3500,
+      minFormOpenMsBeforeSubmit: 1200
+    };
 
     function setCtaEnabled(enabled) {
       const btn = document.getElementById("cta-btn");
@@ -852,6 +979,7 @@
       document.getElementById("rezultat-rata-sub").textContent = "Selectează o combinație validă.";
       document.getElementById("rezultat-finantare-status").textContent = "Necesită verificare";
       document.getElementById("rezultat-finantare-note").textContent = message;
+      updateFormSummary();
       setCtaEnabled(false);
     }
 
@@ -887,6 +1015,7 @@
       document.getElementById("box-factura").classList.toggle("hidden", mode !== "factura");
       document.getElementById("box-kwh").classList.toggle("hidden", mode !== "kwh");
       calculeazaTot();
+      updateFormSummary();
     }
 
     function toggleBox(id, btn) {
@@ -899,7 +1028,14 @@
     function arataFormular() {
       document.getElementById("cta-btn").style.display = "none";
       document.getElementById("form-zone").classList.add("open");
-      setTimeout(() => document.getElementById("telefon").focus(), 200);
+      state.formOpenedAt = Date.now();
+      document.getElementById("h-form-opened-at").value = new Date(state.formOpenedAt).toISOString();
+      updateFormSummary();
+      const zone = document.getElementById("form-zone");
+      if (zone && zone.scrollIntoView) {
+        zone.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      setTimeout(() => document.getElementById("telefon").focus(), 250);
     }
 
     function showNotice(text) {
@@ -1027,6 +1163,88 @@
       }
     }
 
+
+    function updateFormSummary() {
+      const configEl = document.getElementById("form-summary-config");
+      const priceEl = document.getElementById("form-summary-price");
+      const financeEl = document.getElementById("form-summary-finance");
+      if (!configEl || !priceEl || !financeEl) return;
+
+      const config = document.getElementById("rezultat-configuratie")?.textContent || "—";
+      const price = document.getElementById("rezultat-pret")?.textContent || "—";
+      const finance = document.getElementById("rezultat-rata")?.textContent || "—";
+      configEl.textContent = config;
+      priceEl.textContent = price;
+      financeEl.textContent = finance;
+    }
+
+    function sanitizeFieldValue(value) {
+      return String(value || "").replace(/[\x00-\x1F\x7F]+/g, "").trim();
+    }
+
+    function normalizePhone(value) {
+      return sanitizeFieldValue(value).replace(/[^0-9+]/g, "");
+    }
+
+    function syncTrackingFields() {
+      document.getElementById("h-pagina").value = window.location.href;
+      document.getElementById("h-referrer").value = document.referrer || "";
+      const params = new URLSearchParams(window.location.search);
+      document.getElementById("h-utm-campaign").value = params.get("utm_campaign") || "";
+      document.getElementById("h-utm-source").value = params.get("utm_source") || "";
+      document.getElementById("h-utm-medium").value = params.get("utm_medium") || "";
+      document.getElementById("h-utm-content").value = params.get("utm_content") || "";
+      document.getElementById("h-utm-term").value = params.get("utm_term") || "";
+      document.getElementById("h-page-loaded-at").value = new Date(state.pageLoadedAt).toISOString();
+      document.getElementById("h-js-enabled").value = "true";
+    }
+
+    function validateLeadForm() {
+      const phoneEl = document.getElementById("telefon");
+      const emailEl = document.getElementById("email");
+      const localitateEl = document.getElementById("localitate");
+      const websiteTrap = document.getElementById("website-field");
+      const consentEl = document.querySelector('input[name="Consimtamant"]');
+
+      phoneEl.value = sanitizeFieldValue(phoneEl.value);
+      localitateEl.value = sanitizeFieldValue(localitateEl.value);
+      emailEl.value = sanitizeFieldValue(emailEl.value);
+
+      if (websiteTrap && sanitizeFieldValue(websiteTrap.value) !== "") {
+        return { ok: false, message: "Cererea nu a putut fi trimisă. Reîncarcă pagina și încearcă din nou." };
+      }
+
+      const phoneDigits = normalizePhone(phoneEl.value).replace(/^\+/, "");
+      if (phoneDigits.length < 10 || phoneDigits.length > 14) {
+        return { ok: false, message: "Introdu un număr de telefon valid, cu 10–14 cifre." };
+      }
+
+      if (!localitateEl.value || localitateEl.value.length < 2) {
+        return { ok: false, message: "Completează localitatea pentru montaj." };
+      }
+
+      if (emailEl.value) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        if (!emailPattern.test(emailEl.value)) {
+          return { ok: false, message: "Adresa de email pare invalidă." };
+        }
+      }
+
+      if (!consentEl || !consentEl.checked) {
+        return { ok: false, message: "Este necesar acordul GDPR pentru a trimite cererea." };
+      }
+
+      const now = Date.now();
+      const pageMs = now - state.pageLoadedAt;
+      const openMs = state.formOpenedAt ? now - state.formOpenedAt : 0;
+      if (pageMs < SECURITY.minPageMsBeforeSubmit || (state.formOpenedAt && openMs < SECURITY.minFormOpenMsBeforeSubmit)) {
+        return { ok: false, message: "Mai așteaptă o secundă și verifică datele înainte de trimitere." };
+      }
+
+      document.getElementById("h-submit-latency").value = ((now - state.pageLoadedAt) / 1000).toFixed(1);
+      return { ok: true };
+    }
+
     function onProducerChange() {
       clearNotice();
       populatePowerOptions(getProducer(), true);
@@ -1034,6 +1252,7 @@
       ensureBackupBattery(false);
       updateBackupBadge();
       calculeazaTot();
+      updateFormSummary();
     }
 
     function onBatteryChange() {
@@ -1041,6 +1260,7 @@
       ensureBackupBattery(true);
       updateBackupBadge();
       calculeazaTot();
+      updateFormSummary();
     }
 
     function onSmartGuardChange() {
@@ -1227,27 +1447,44 @@
       document.getElementById("h-rata").value = plata === "cash" ? "Cash" : fmt(rate, 2);
       document.getElementById("h-tbi-eligibility").value = advance > 0 ? "Necesita avans" : "Eligibil standard";
       document.getElementById("h-advance").value = fmt(advance, 2);
-      document.getElementById("h-pagina").value = window.location.href;
-      document.getElementById("h-referrer").value = document.referrer || "";
-      const params = new URLSearchParams(window.location.search);
-      document.getElementById("h-utm-campaign").value = params.get("utm_campaign") || "";
+      syncTrackingFields();
+      updateFormSummary();
     }
 
     function pregatesteFormularul() {
+      if (state.submitLocked) return false;
       calculeazaTot();
+      const validation = validateLeadForm();
+      if (!validation.ok) {
+        showNotice(validation.message);
+        document.getElementById("form-zone").classList.add("open");
+        return false;
+      }
+
+      state.submitLocked = true;
       const btn = document.getElementById("submit-btn");
       btn.disabled = true;
-      btn.textContent = "Analizăm...";
+      btn.textContent = "Trimitem...";
       return true;
     }
 
     function validateGridShape(grid) {
-      return !!(grid && grid.meta && grid.producers && Object.keys(grid.producers).length);
+      if (!(grid && grid.meta && grid.producers && Object.keys(grid.producers).length)) return false;
+      if (typeof grid.meta.assumed_kwh_price !== "number") return false;
+      if (typeof grid.meta.rate_factor_60m !== "number") return false;
+      if (typeof grid.meta.tbi_cap_ron !== "number") return false;
+      return true;
     }
 
     async function init() {
+      state.pageLoadedAt = Date.now();
+      setCtaEnabled(false);
+      syncTrackingFields();
       try {
-        const response = await fetch('./ecoline_web_grid_2026_v2_2.json', { cache: 'no-store' });
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), SECURITY.fetchTimeoutMs);
+        const response = await fetch('./ecoline_web_grid_2026_v2_4.json', { cache: 'no-store', signal: controller.signal });
+        clearTimeout(timeout);
         if (!response.ok) throw new Error(`JSON indisponibil (${response.status})`);
         GRID = await response.json();
         if (!validateGridShape(GRID)) throw new Error('Schema JSON invalidă sau incompletă');
@@ -1265,7 +1502,7 @@
       }
     }
 
-    window.onload = init;
+    window.addEventListener('load', init);
   </script>
 </body>
 </html>
