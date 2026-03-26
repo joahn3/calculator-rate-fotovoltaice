@@ -48,11 +48,11 @@
     .brand-logo {
       font-size: 2rem;
       font-weight: 800;
-      color: var(--emerald-600);
+      color: var(--gray-900);
       letter-spacing: -1px;
       text-decoration: none;
     }
-    .brand-logo span { color: var(--gray-900); }
+    .brand-logo span { color: var(--emerald-600); }
 
     .brand-footer {
       margin-top: auto;
@@ -162,7 +162,7 @@
       color: var(--gray-700);
       margin-bottom: 0.5rem;
     }
-    input[type="number"], input[type="text"], input[type="tel"], select, textarea {
+    input[type="number"], input[type="text"], input[type="tel"], input[type="email"], select, textarea {
       width: 100%;
       border-radius: 0.75rem;
       border: 1px solid var(--gray-300);
@@ -172,7 +172,7 @@
       transition: border-color 0.2s;
       background: #fff;
     }
-    input[type="number"]:focus, input[type="text"]:focus, input[type="tel"]:focus, select:focus, textarea:focus {
+    input[type="number"]:focus, input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
       outline: none;
       border-color: var(--emerald-500);
       box-shadow: 0 0 0 3px var(--emerald-100);
@@ -193,7 +193,25 @@
     .input-dark {
       background: var(--gray-800);
       color: #fff;
-      border-color: var(--gray-600);
+      border-color: var(--gray-500);
+      caret-color: #fff;
+      -webkit-text-fill-color: #fff;
+    }
+    .input-dark::placeholder {
+      color: var(--gray-400);
+      opacity: 1;
+    }
+    .input-dark:-webkit-autofill,
+    .input-dark:-webkit-autofill:hover,
+    .input-dark:-webkit-autofill:focus {
+      -webkit-text-fill-color: #fff;
+      -webkit-box-shadow: 0 0 0 1000px var(--gray-800) inset;
+      box-shadow: 0 0 0 1000px var(--gray-800) inset;
+      transition: background-color 9999s ease-in-out 0s;
+    }
+    .reveal-form label.form-label,
+    .cta-zone label.form-label {
+      color: var(--gray-300);
     }
 
     .radio-card {
@@ -592,7 +610,7 @@
             <select id="manual-power-select" onchange="calculeazaTot()"></select>
           </div>
 
-          <div id="ux-notice" class="message-box msg-warn hidden"></div>
+          <div id="ux-notice" class="message-box msg-warn hidden" role="status" aria-live="polite"></div>
         </div>
       </section>
 
@@ -718,6 +736,7 @@
                     minlength="10"
                     placeholder="07xx xxx xxx"
                     required
+                    autocomplete="tel"
                     class="input-dark"
                   />
                 </div>
@@ -730,9 +749,23 @@
                     name="Localitate"
                     placeholder="Ex: Popești-Leordeni"
                     required
+                    autocomplete="address-level2"
                     class="input-dark"
                   />
                 </div>
+              </div>
+
+              <div class="mb-6" style="text-align:left;">
+                <label class="form-label text-gray-300" for="email">Email (opțional)</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="Email"
+                  inputmode="email"
+                  autocomplete="email"
+                  placeholder="nume@exemplu.ro"
+                  class="input-dark"
+                />
               </div>
 
               <div class="mb-6" style="text-align:left;">
@@ -800,6 +833,27 @@
     };
 
     let state = { modCalcul: "factura" };
+
+    function setCtaEnabled(enabled) {
+      const btn = document.getElementById("cta-btn");
+      const submitBtn = document.getElementById("submit-btn");
+      if (btn) btn.disabled = !enabled;
+      if (btn) btn.style.opacity = enabled ? "1" : "0.6";
+      if (btn) btn.style.cursor = enabled ? "pointer" : "not-allowed";
+      if (submitBtn) submitBtn.disabled = !enabled;
+    }
+
+    function setUnavailableState(message) {
+      showNotice(message);
+      document.getElementById("rezultat-configuratie").textContent = "Configurație indisponibilă";
+      document.getElementById("rezultat-baterie").textContent = "Verifică opțiunile selectate";
+      document.getElementById("rezultat-pret").textContent = "—";
+      document.getElementById("rezultat-rata").textContent = "—";
+      document.getElementById("rezultat-rata-sub").textContent = "Selectează o combinație validă.";
+      document.getElementById("rezultat-finantare-status").textContent = "Necesită verificare";
+      document.getElementById("rezultat-finantare-note").textContent = message;
+      setCtaEnabled(false);
+    }
 
     function fmt(n, digits = 0) {
       return new Intl.NumberFormat("ro-RO", {
@@ -1084,9 +1138,12 @@
       const scenario = lookupScenario(producer, selectedPower, batteryCode, smartGuard, ev);
 
       if (!scenario || !battery) {
-        showNotice("Combinația selectată nu există în grila curentă. Verifică producătorul, bateria și puterea.");
+        setUnavailableState("Combinația selectată nu există în grila curentă. Verifică producătorul, bateria și puterea.");
         return;
       }
+
+      clearNotice();
+      setCtaEnabled(true);
 
       const pretBrut = scenario.gross;
       const panels = scenario.panels;
@@ -1184,16 +1241,28 @@
       return true;
     }
 
-    async function init() {
-      const response = await fetch('./ecoline_web_grid_2026_v2_2.json', { cache: 'no-store' });
-      GRID = await response.json();
+    function validateGridShape(grid) {
+      return !!(grid && grid.meta && grid.producers && Object.keys(grid.producers).length);
+    }
 
-      populateProducerOptions();
-      populatePowerOptions(getProducer(), false);
-      syncFacturaFromRange();
-      populateBatteryOptions(getProducer(), false);
-      updateBackupBadge();
-      calculeazaTot();
+    async function init() {
+      try {
+        const response = await fetch('./ecoline_web_grid_2026_v2_2.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error(`JSON indisponibil (${response.status})`);
+        GRID = await response.json();
+        if (!validateGridShape(GRID)) throw new Error('Schema JSON invalidă sau incompletă');
+
+        populateProducerOptions();
+        populatePowerOptions(getProducer(), false);
+        syncFacturaFromRange();
+        populateBatteryOptions(getProducer(), false);
+        updateBackupBadge();
+        setCtaEnabled(true);
+        calculeazaTot();
+      } catch (err) {
+        console.error(err);
+        setUnavailableState('Calculatorul nu a putut încărca grila de prețuri. Verifică fișierul JSON și calea de fetch.');
+      }
     }
 
     window.onload = init;
