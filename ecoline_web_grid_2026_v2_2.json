@@ -1,0 +1,2154 @@
+{
+  "meta": {
+    "assumed_kwh_price": 1.3,
+    "rate_factor_60m": 0.0231,
+    "tbi_cap_ron": 90000.0,
+    "financier": "tbi bank",
+    "program": "Parteneriat direct",
+    "decontare_partner": "Max 24h de la semnarea contractului de către client",
+    "proces": "100% online",
+    "source": "Email TBI Roxana Davidescu",
+    "scope": "La cheie",
+    "notes": "Preț direct electroVerde, fără comision partener; bateriile legacy/custom/review au fost scoase din calculatorul public."
+  },
+  "producers": {
+    "Deye": {
+      "battery_options": [
+        {
+          "code": "fara_baterie",
+          "label": "Fără baterie",
+          "family": null,
+          "status": "Exact",
+          "nominal_kwh": null
+        },
+        {
+          "code": "deye_ai_w5_1_b_5_12_kwh",
+          "label": "Deye AI-W5.1-B 5.12 kWh",
+          "family": "Deye AI-W5.1-B (LV)",
+          "status": "Exact",
+          "nominal_kwh": 5.12
+        },
+        {
+          "code": "deye_ai_w5_1_b_10_24_kwh",
+          "label": "Deye AI-W5.1-B 10.24 kWh",
+          "family": "Deye AI-W5.1-B (LV)",
+          "status": "Exact",
+          "nominal_kwh": 10.24
+        }
+      ],
+      "power_options": [
+        5.2,
+        6.37,
+        7.28,
+        8.2,
+        9.1,
+        12.0,
+        15.0,
+        20.0
+      ],
+      "prices": {
+        "5.2": {
+          "panels": 12,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 33043.37,
+                "Da": 38799.51
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "deye_ai_w5_1_b_5_12_kwh": {
+              "Nu": {
+                "Nu": 41599.8,
+                "Da": 47355.94
+              },
+              "Da": {
+                "Nu": 49215.01,
+                "Da": 54971.15
+              }
+            },
+            "deye_ai_w5_1_b_10_24_kwh": {
+              "Nu": {
+                "Nu": 50156.23,
+                "Da": 55912.36
+              },
+              "Da": {
+                "Nu": 57771.44,
+                "Da": 63527.58
+              }
+            }
+          }
+        },
+        "6.37": {
+          "panels": 14,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 39778.06,
+                "Da": 45534.19
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "deye_ai_w5_1_b_5_12_kwh": {
+              "Nu": {
+                "Nu": 48334.49,
+                "Da": 54090.63
+              },
+              "Da": {
+                "Nu": 55949.71,
+                "Da": 61705.84
+              }
+            },
+            "deye_ai_w5_1_b_10_24_kwh": {
+              "Nu": {
+                "Nu": 56890.92,
+                "Da": 62647.06
+              },
+              "Da": {
+                "Nu": 64506.13,
+                "Da": 70262.27
+              }
+            }
+          }
+        },
+        "7.28": {
+          "panels": 16,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 45016.15,
+                "Da": 50772.28
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "deye_ai_w5_1_b_5_12_kwh": {
+              "Nu": {
+                "Nu": 53572.58,
+                "Da": 59328.72
+              },
+              "Da": {
+                "Nu": 61187.8,
+                "Da": 66943.93
+              }
+            },
+            "deye_ai_w5_1_b_10_24_kwh": {
+              "Nu": {
+                "Nu": 62129.01,
+                "Da": 67885.15
+              },
+              "Da": {
+                "Nu": 69744.22,
+                "Da": 75500.36
+              }
+            }
+          }
+        },
+        "8.2": {
+          "panels": 18,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 50311.8,
+                "Da": 56067.94
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "deye_ai_w5_1_b_5_12_kwh": {
+              "Nu": {
+                "Nu": 58868.23,
+                "Da": 64624.36
+              },
+              "Da": {
+                "Nu": 66483.44,
+                "Da": 72239.58
+              }
+            },
+            "deye_ai_w5_1_b_10_24_kwh": {
+              "Nu": {
+                "Nu": 67424.66,
+                "Da": 73180.8
+              },
+              "Da": {
+                "Nu": 75039.88,
+                "Da": 80796.01
+              }
+            }
+          }
+        },
+        "9.1": {
+          "panels": 20,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 55492.33,
+                "Da": 61248.46
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "deye_ai_w5_1_b_5_12_kwh": {
+              "Nu": {
+                "Nu": 64048.76,
+                "Da": 69804.9
+              },
+              "Da": {
+                "Nu": 71663.98,
+                "Da": 77420.11
+              }
+            },
+            "deye_ai_w5_1_b_10_24_kwh": {
+              "Nu": {
+                "Nu": 72605.19,
+                "Da": 78361.33
+              },
+              "Da": {
+                "Nu": 80220.4,
+                "Da": 85976.54
+              }
+            }
+          }
+        },
+        "12": {
+          "panels": 26,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 72185.14,
+                "Da": 77941.28
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "deye_ai_w5_1_b_5_12_kwh": {
+              "Nu": {
+                "Nu": 80741.57,
+                "Da": 86497.71
+              },
+              "Da": {
+                "Nu": 88356.79,
+                "Da": 94112.93
+              }
+            },
+            "deye_ai_w5_1_b_10_24_kwh": {
+              "Nu": {
+                "Nu": 89298.0,
+                "Da": 95054.14
+              },
+              "Da": {
+                "Nu": 96913.21,
+                "Da": 102669.35
+              }
+            }
+          }
+        },
+        "15": {
+          "panels": 34,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 89453.57,
+                "Da": 95209.71
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "deye_ai_w5_1_b_5_12_kwh": {
+              "Nu": {
+                "Nu": 98010.0,
+                "Da": 103766.14
+              },
+              "Da": {
+                "Nu": 105625.21,
+                "Da": 111381.35
+              }
+            },
+            "deye_ai_w5_1_b_10_24_kwh": {
+              "Nu": {
+                "Nu": 106566.43,
+                "Da": 112322.56
+              },
+              "Da": {
+                "Nu": 114181.64,
+                "Da": 119937.78
+              }
+            }
+          }
+        },
+        "20": {
+          "panels": 46,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 118234.29,
+                "Da": 123990.43
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "deye_ai_w5_1_b_5_12_kwh": {
+              "Nu": {
+                "Nu": 126790.71,
+                "Da": 132546.85
+              },
+              "Da": {
+                "Nu": 134405.93,
+                "Da": 140162.07
+              }
+            },
+            "deye_ai_w5_1_b_10_24_kwh": {
+              "Nu": {
+                "Nu": 135347.14,
+                "Da": 141103.28
+              },
+              "Da": {
+                "Nu": 142962.35,
+                "Da": 148718.49
+              }
+            }
+          }
+        }
+      }
+    },
+    "Huawei": {
+      "battery_options": [
+        {
+          "code": "fara_baterie",
+          "label": "Fără baterie",
+          "family": null,
+          "status": "Exact",
+          "nominal_kwh": null
+        },
+        {
+          "code": "huawei_luna_s0_5_kwh",
+          "label": "Huawei LUNA S0 5 kWh",
+          "family": "Huawei LUNA S0",
+          "status": "Exact",
+          "nominal_kwh": 5.0
+        },
+        {
+          "code": "huawei_luna_s1_5_kwh",
+          "label": "Huawei LUNA S1 5 kWh",
+          "family": "Huawei LUNA S1",
+          "status": "Exact",
+          "nominal_kwh": 5.0
+        },
+        {
+          "code": "huawei_luna_s1_7_kwh",
+          "label": "Huawei LUNA S1 7 kWh",
+          "family": "Huawei LUNA S1",
+          "status": "Exact",
+          "nominal_kwh": 7.0
+        },
+        {
+          "code": "huawei_luna_s0_10_kwh",
+          "label": "Huawei LUNA S0 10 kWh",
+          "family": "Huawei LUNA S0",
+          "status": "Exact",
+          "nominal_kwh": 10.0
+        },
+        {
+          "code": "huawei_luna_s1_10_kwh",
+          "label": "Huawei LUNA S1 10 kWh",
+          "family": "Huawei LUNA S1",
+          "status": "Exact",
+          "nominal_kwh": 10.0
+        },
+        {
+          "code": "huawei_luna_s1_12_kwh",
+          "label": "Huawei LUNA S1 12 kWh",
+          "family": "Huawei LUNA S1",
+          "status": "Exact",
+          "nominal_kwh": 12.0
+        },
+        {
+          "code": "huawei_luna_s1_14_kwh",
+          "label": "Huawei LUNA S1 14 kWh",
+          "family": "Huawei LUNA S1",
+          "status": "Exact",
+          "nominal_kwh": 14.0
+        },
+        {
+          "code": "huawei_luna_s1_15_kwh",
+          "label": "Huawei LUNA S1 15 kWh",
+          "family": "Huawei LUNA S1",
+          "status": "Exact",
+          "nominal_kwh": 15.0
+        },
+        {
+          "code": "huawei_luna_s1_17_kwh",
+          "label": "Huawei LUNA S1 17 kWh",
+          "family": "Huawei LUNA S1",
+          "status": "Exact",
+          "nominal_kwh": 17.0
+        },
+        {
+          "code": "huawei_luna_s1_19_kwh",
+          "label": "Huawei LUNA S1 19 kWh",
+          "family": "Huawei LUNA S1",
+          "status": "Exact",
+          "nominal_kwh": 19.0
+        },
+        {
+          "code": "huawei_luna_s1_21_kwh",
+          "label": "Huawei LUNA S1 21 kWh",
+          "family": "Huawei LUNA S1",
+          "status": "Exact",
+          "nominal_kwh": 21.0
+        }
+      ],
+      "power_options": [
+        5.2,
+        6.37,
+        7.28,
+        8.2,
+        9.1,
+        12.0,
+        15.0,
+        20.0
+      ],
+      "prices": {
+        "5.2": {
+          "panels": 12,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 33852.34,
+                "Da": 39608.48
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "huawei_luna_s0_5_kwh": {
+              "Nu": {
+                "Nu": 50965.2,
+                "Da": 56721.34
+              },
+              "Da": {
+                "Nu": 58580.41,
+                "Da": 64336.55
+              }
+            },
+            "huawei_luna_s1_5_kwh": {
+              "Nu": {
+                "Nu": 48522.55,
+                "Da": 54278.69
+              },
+              "Da": {
+                "Nu": 56137.77,
+                "Da": 61893.91
+              }
+            },
+            "huawei_luna_s1_7_kwh": {
+              "Nu": {
+                "Nu": 54642.35,
+                "Da": 60398.49
+              },
+              "Da": {
+                "Nu": 62257.56,
+                "Da": 68013.7
+              }
+            },
+            "huawei_luna_s0_10_kwh": {
+              "Nu": {
+                "Nu": 68078.06,
+                "Da": 73834.2
+              },
+              "Da": {
+                "Nu": 75693.28,
+                "Da": 81449.41
+              }
+            },
+            "huawei_luna_s1_10_kwh": {
+              "Nu": {
+                "Nu": 57702.55,
+                "Da": 63458.69
+              },
+              "Da": {
+                "Nu": 65317.77,
+                "Da": 71073.91
+              }
+            },
+            "huawei_luna_s1_12_kwh": {
+              "Nu": {
+                "Nu": 63822.35,
+                "Da": 69578.49
+              },
+              "Da": {
+                "Nu": 71437.56,
+                "Da": 77193.7
+              }
+            },
+            "huawei_luna_s1_14_kwh": {
+              "Nu": {
+                "Nu": 69942.14,
+                "Da": 75698.28
+              },
+              "Da": {
+                "Nu": 77557.36,
+                "Da": 83313.49
+              }
+            },
+            "huawei_luna_s1_15_kwh": {
+              "Nu": {
+                "Nu": 66882.55,
+                "Da": 72638.69
+              },
+              "Da": {
+                "Nu": 74497.77,
+                "Da": 80253.91
+              }
+            },
+            "huawei_luna_s1_17_kwh": {
+              "Nu": {
+                "Nu": 73002.35,
+                "Da": 78758.49
+              },
+              "Da": {
+                "Nu": 80617.56,
+                "Da": 86373.7
+              }
+            },
+            "huawei_luna_s1_19_kwh": {
+              "Nu": {
+                "Nu": 79122.14,
+                "Da": 84878.28
+              },
+              "Da": {
+                "Nu": 86737.36,
+                "Da": 92493.49
+              }
+            },
+            "huawei_luna_s1_21_kwh": {
+              "Nu": {
+                "Nu": 85241.93,
+                "Da": 90998.07
+              },
+              "Da": {
+                "Nu": 92857.15,
+                "Da": 98613.29
+              }
+            }
+          }
+        },
+        "6.37": {
+          "panels": 14,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 40769.05,
+                "Da": 46525.18
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "huawei_luna_s0_5_kwh": {
+              "Nu": {
+                "Nu": 57881.91,
+                "Da": 63638.05
+              },
+              "Da": {
+                "Nu": 65497.12,
+                "Da": 71253.26
+              }
+            },
+            "huawei_luna_s1_5_kwh": {
+              "Nu": {
+                "Nu": 55439.26,
+                "Da": 61195.4
+              },
+              "Da": {
+                "Nu": 63054.48,
+                "Da": 68810.62
+              }
+            },
+            "huawei_luna_s1_7_kwh": {
+              "Nu": {
+                "Nu": 61559.05,
+                "Da": 67315.19
+              },
+              "Da": {
+                "Nu": 69174.27,
+                "Da": 74930.41
+              }
+            },
+            "huawei_luna_s0_10_kwh": {
+              "Nu": {
+                "Nu": 74994.76,
+                "Da": 80750.9
+              },
+              "Da": {
+                "Nu": 82609.97,
+                "Da": 88366.11
+              }
+            },
+            "huawei_luna_s1_10_kwh": {
+              "Nu": {
+                "Nu": 64619.26,
+                "Da": 70375.4
+              },
+              "Da": {
+                "Nu": 72234.48,
+                "Da": 77990.62
+              }
+            },
+            "huawei_luna_s1_12_kwh": {
+              "Nu": {
+                "Nu": 70739.05,
+                "Da": 76495.19
+              },
+              "Da": {
+                "Nu": 78354.27,
+                "Da": 84110.41
+              }
+            },
+            "huawei_luna_s1_14_kwh": {
+              "Nu": {
+                "Nu": 76858.85,
+                "Da": 82614.99
+              },
+              "Da": {
+                "Nu": 84474.06,
+                "Da": 90230.2
+              }
+            },
+            "huawei_luna_s1_15_kwh": {
+              "Nu": {
+                "Nu": 73799.26,
+                "Da": 79555.4
+              },
+              "Da": {
+                "Nu": 81414.48,
+                "Da": 87170.62
+              }
+            },
+            "huawei_luna_s1_17_kwh": {
+              "Nu": {
+                "Nu": 79919.05,
+                "Da": 85675.19
+              },
+              "Da": {
+                "Nu": 87534.27,
+                "Da": 93290.41
+              }
+            },
+            "huawei_luna_s1_19_kwh": {
+              "Nu": {
+                "Nu": 86038.85,
+                "Da": 91794.99
+              },
+              "Da": {
+                "Nu": 93654.06,
+                "Da": 99410.2
+              }
+            },
+            "huawei_luna_s1_21_kwh": {
+              "Nu": {
+                "Nu": 92158.64,
+                "Da": 97914.78
+              },
+              "Da": {
+                "Nu": 99773.86,
+                "Da": 105529.99
+              }
+            }
+          }
+        },
+        "7.28": {
+          "panels": 16,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 46148.71,
+                "Da": 51904.84
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "huawei_luna_s0_5_kwh": {
+              "Nu": {
+                "Nu": 63261.57,
+                "Da": 69017.71
+              },
+              "Da": {
+                "Nu": 70876.78,
+                "Da": 76632.92
+              }
+            },
+            "huawei_luna_s1_5_kwh": {
+              "Nu": {
+                "Nu": 60818.92,
+                "Da": 66575.06
+              },
+              "Da": {
+                "Nu": 68434.14,
+                "Da": 74190.28
+              }
+            },
+            "huawei_luna_s1_7_kwh": {
+              "Nu": {
+                "Nu": 66938.71,
+                "Da": 72694.85
+              },
+              "Da": {
+                "Nu": 74553.93,
+                "Da": 80310.07
+              }
+            },
+            "huawei_luna_s0_10_kwh": {
+              "Nu": {
+                "Nu": 80374.42,
+                "Da": 86130.56
+              },
+              "Da": {
+                "Nu": 87989.63,
+                "Da": 93745.77
+              }
+            },
+            "huawei_luna_s1_10_kwh": {
+              "Nu": {
+                "Nu": 69998.92,
+                "Da": 75755.06
+              },
+              "Da": {
+                "Nu": 77614.14,
+                "Da": 83370.28
+              }
+            },
+            "huawei_luna_s1_12_kwh": {
+              "Nu": {
+                "Nu": 76118.71,
+                "Da": 81874.85
+              },
+              "Da": {
+                "Nu": 83733.93,
+                "Da": 89490.07
+              }
+            },
+            "huawei_luna_s1_14_kwh": {
+              "Nu": {
+                "Nu": 82238.51,
+                "Da": 87994.65
+              },
+              "Da": {
+                "Nu": 89853.72,
+                "Da": 95609.86
+              }
+            },
+            "huawei_luna_s1_15_kwh": {
+              "Nu": {
+                "Nu": 79178.92,
+                "Da": 84935.06
+              },
+              "Da": {
+                "Nu": 86794.14,
+                "Da": 92550.28
+              }
+            },
+            "huawei_luna_s1_17_kwh": {
+              "Nu": {
+                "Nu": 85298.71,
+                "Da": 91054.85
+              },
+              "Da": {
+                "Nu": 92913.93,
+                "Da": 98670.07
+              }
+            },
+            "huawei_luna_s1_19_kwh": {
+              "Nu": {
+                "Nu": 91418.51,
+                "Da": 97174.65
+              },
+              "Da": {
+                "Nu": 99033.72,
+                "Da": 104789.86
+              }
+            },
+            "huawei_luna_s1_21_kwh": {
+              "Nu": {
+                "Nu": 97538.3,
+                "Da": 103294.44
+              },
+              "Da": {
+                "Nu": 105153.52,
+                "Da": 110909.65
+              }
+            }
+          }
+        },
+        "8.2": {
+          "panels": 18,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 51587.49,
+                "Da": 57343.63
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "huawei_luna_s0_5_kwh": {
+              "Nu": {
+                "Nu": 68700.34,
+                "Da": 74456.48
+              },
+              "Da": {
+                "Nu": 76315.55,
+                "Da": 82071.69
+              }
+            },
+            "huawei_luna_s1_5_kwh": {
+              "Nu": {
+                "Nu": 66257.7,
+                "Da": 72013.84
+              },
+              "Da": {
+                "Nu": 73872.92,
+                "Da": 79629.06
+              }
+            },
+            "huawei_luna_s1_7_kwh": {
+              "Nu": {
+                "Nu": 72377.5,
+                "Da": 78133.64
+              },
+              "Da": {
+                "Nu": 79992.71,
+                "Da": 85748.85
+              }
+            },
+            "huawei_luna_s0_10_kwh": {
+              "Nu": {
+                "Nu": 85813.2,
+                "Da": 91569.34
+              },
+              "Da": {
+                "Nu": 93428.41,
+                "Da": 99184.55
+              }
+            },
+            "huawei_luna_s1_10_kwh": {
+              "Nu": {
+                "Nu": 75437.7,
+                "Da": 81193.84
+              },
+              "Da": {
+                "Nu": 83052.92,
+                "Da": 88809.06
+              }
+            },
+            "huawei_luna_s1_12_kwh": {
+              "Nu": {
+                "Nu": 81557.5,
+                "Da": 87313.64
+              },
+              "Da": {
+                "Nu": 89172.71,
+                "Da": 94928.85
+              }
+            },
+            "huawei_luna_s1_14_kwh": {
+              "Nu": {
+                "Nu": 87677.29,
+                "Da": 93433.43
+              },
+              "Da": {
+                "Nu": 95292.5,
+                "Da": 101048.64
+              }
+            },
+            "huawei_luna_s1_15_kwh": {
+              "Nu": {
+                "Nu": 84617.7,
+                "Da": 90373.84
+              },
+              "Da": {
+                "Nu": 92232.92,
+                "Da": 97989.06
+              }
+            },
+            "huawei_luna_s1_17_kwh": {
+              "Nu": {
+                "Nu": 90737.5,
+                "Da": 96493.64
+              },
+              "Da": {
+                "Nu": 98352.71,
+                "Da": 104108.85
+              }
+            },
+            "huawei_luna_s1_19_kwh": {
+              "Nu": {
+                "Nu": 96857.29,
+                "Da": 102613.43
+              },
+              "Da": {
+                "Nu": 104472.5,
+                "Da": 110228.64
+              }
+            },
+            "huawei_luna_s1_21_kwh": {
+              "Nu": {
+                "Nu": 102977.08,
+                "Da": 108733.22
+              },
+              "Da": {
+                "Nu": 110592.3,
+                "Da": 116348.44
+              }
+            }
+          }
+        },
+        "9.1": {
+          "panels": 20,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 56908.03,
+                "Da": 62664.16
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "huawei_luna_s0_5_kwh": {
+              "Nu": {
+                "Nu": 74020.89,
+                "Da": 79777.03
+              },
+              "Da": {
+                "Nu": 81636.1,
+                "Da": 87392.24
+              }
+            },
+            "huawei_luna_s1_5_kwh": {
+              "Nu": {
+                "Nu": 71578.24,
+                "Da": 77334.38
+              },
+              "Da": {
+                "Nu": 79193.46,
+                "Da": 84949.6
+              }
+            },
+            "huawei_luna_s1_7_kwh": {
+              "Nu": {
+                "Nu": 77698.04,
+                "Da": 83454.17
+              },
+              "Da": {
+                "Nu": 85313.25,
+                "Da": 91069.39
+              }
+            },
+            "huawei_luna_s0_10_kwh": {
+              "Nu": {
+                "Nu": 91133.74,
+                "Da": 96889.88
+              },
+              "Da": {
+                "Nu": 98748.95,
+                "Da": 104505.09
+              }
+            },
+            "huawei_luna_s1_10_kwh": {
+              "Nu": {
+                "Nu": 80758.24,
+                "Da": 86514.38
+              },
+              "Da": {
+                "Nu": 88373.46,
+                "Da": 94129.6
+              }
+            },
+            "huawei_luna_s1_12_kwh": {
+              "Nu": {
+                "Nu": 86878.04,
+                "Da": 92634.17
+              },
+              "Da": {
+                "Nu": 94493.25,
+                "Da": 100249.39
+              }
+            },
+            "huawei_luna_s1_14_kwh": {
+              "Nu": {
+                "Nu": 92997.83,
+                "Da": 98753.97
+              },
+              "Da": {
+                "Nu": 100613.04,
+                "Da": 106369.18
+              }
+            },
+            "huawei_luna_s1_15_kwh": {
+              "Nu": {
+                "Nu": 89938.24,
+                "Da": 95694.38
+              },
+              "Da": {
+                "Nu": 97553.46,
+                "Da": 103309.6
+              }
+            },
+            "huawei_luna_s1_17_kwh": {
+              "Nu": {
+                "Nu": 96058.04,
+                "Da": 101814.17
+              },
+              "Da": {
+                "Nu": 103673.25,
+                "Da": 109429.39
+              }
+            },
+            "huawei_luna_s1_19_kwh": {
+              "Nu": {
+                "Nu": 102177.83,
+                "Da": 107933.97
+              },
+              "Da": {
+                "Nu": 109793.04,
+                "Da": 115549.18
+              }
+            },
+            "huawei_luna_s1_21_kwh": {
+              "Nu": {
+                "Nu": 108297.62,
+                "Da": 114053.76
+              },
+              "Da": {
+                "Nu": 115912.84,
+                "Da": 121668.97
+              }
+            }
+          }
+        },
+        "12": {
+          "panels": 26,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 74052.0,
+                "Da": 79808.14
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "huawei_luna_s0_5_kwh": {
+              "Nu": {
+                "Nu": 91164.86,
+                "Da": 96921.0
+              },
+              "Da": {
+                "Nu": 98780.08,
+                "Da": 104536.21
+              }
+            },
+            "huawei_luna_s1_5_kwh": {
+              "Nu": {
+                "Nu": 88722.22,
+                "Da": 94478.35
+              },
+              "Da": {
+                "Nu": 96337.43,
+                "Da": 102093.57
+              }
+            },
+            "huawei_luna_s1_7_kwh": {
+              "Nu": {
+                "Nu": 94842.01,
+                "Da": 100598.15
+              },
+              "Da": {
+                "Nu": 102457.22,
+                "Da": 108213.36
+              }
+            },
+            "huawei_luna_s0_10_kwh": {
+              "Nu": {
+                "Nu": 108277.71,
+                "Da": 114033.85
+              },
+              "Da": {
+                "Nu": 115892.93,
+                "Da": 121649.07
+              }
+            },
+            "huawei_luna_s1_10_kwh": {
+              "Nu": {
+                "Nu": 97902.22,
+                "Da": 103658.35
+              },
+              "Da": {
+                "Nu": 105517.43,
+                "Da": 111273.57
+              }
+            },
+            "huawei_luna_s1_12_kwh": {
+              "Nu": {
+                "Nu": 104022.01,
+                "Da": 109778.15
+              },
+              "Da": {
+                "Nu": 111637.22,
+                "Da": 117393.36
+              }
+            },
+            "huawei_luna_s1_14_kwh": {
+              "Nu": {
+                "Nu": 110141.8,
+                "Da": 115897.94
+              },
+              "Da": {
+                "Nu": 117757.02,
+                "Da": 123513.16
+              }
+            },
+            "huawei_luna_s1_15_kwh": {
+              "Nu": {
+                "Nu": 107082.22,
+                "Da": 112838.35
+              },
+              "Da": {
+                "Nu": 114697.43,
+                "Da": 120453.57
+              }
+            },
+            "huawei_luna_s1_17_kwh": {
+              "Nu": {
+                "Nu": 113202.01,
+                "Da": 118958.15
+              },
+              "Da": {
+                "Nu": 120817.22,
+                "Da": 126573.36
+              }
+            },
+            "huawei_luna_s1_19_kwh": {
+              "Nu": {
+                "Nu": 119321.8,
+                "Da": 125077.94
+              },
+              "Da": {
+                "Nu": 126937.02,
+                "Da": 132693.16
+              }
+            },
+            "huawei_luna_s1_21_kwh": {
+              "Nu": {
+                "Nu": 125441.6,
+                "Da": 131197.73
+              },
+              "Da": {
+                "Nu": 133056.81,
+                "Da": 138812.95
+              }
+            }
+          }
+        },
+        "15": {
+          "panels": 34,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 91787.14,
+                "Da": 97543.28
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "huawei_luna_s0_5_kwh": {
+              "Nu": {
+                "Nu": 108900.0,
+                "Da": 114656.14
+              },
+              "Da": {
+                "Nu": 116515.21,
+                "Da": 122271.35
+              }
+            },
+            "huawei_luna_s1_5_kwh": {
+              "Nu": {
+                "Nu": 106457.35,
+                "Da": 112213.49
+              },
+              "Da": {
+                "Nu": 114072.57,
+                "Da": 119828.71
+              }
+            },
+            "huawei_luna_s1_7_kwh": {
+              "Nu": {
+                "Nu": 112577.15,
+                "Da": 118333.29
+              },
+              "Da": {
+                "Nu": 120192.36,
+                "Da": 125948.5
+              }
+            },
+            "huawei_luna_s0_10_kwh": {
+              "Nu": {
+                "Nu": 126012.86,
+                "Da": 131769.0
+              },
+              "Da": {
+                "Nu": 133628.08,
+                "Da": 139384.21
+              }
+            },
+            "huawei_luna_s1_10_kwh": {
+              "Nu": {
+                "Nu": 115637.35,
+                "Da": 121393.49
+              },
+              "Da": {
+                "Nu": 123252.57,
+                "Da": 129008.71
+              }
+            },
+            "huawei_luna_s1_12_kwh": {
+              "Nu": {
+                "Nu": 121757.15,
+                "Da": 127513.29
+              },
+              "Da": {
+                "Nu": 129372.36,
+                "Da": 135128.5
+              }
+            },
+            "huawei_luna_s1_14_kwh": {
+              "Nu": {
+                "Nu": 127876.94,
+                "Da": 133633.08
+              },
+              "Da": {
+                "Nu": 135492.16,
+                "Da": 141248.3
+              }
+            },
+            "huawei_luna_s1_15_kwh": {
+              "Nu": {
+                "Nu": 124817.35,
+                "Da": 130573.49
+              },
+              "Da": {
+                "Nu": 132432.57,
+                "Da": 138188.71
+              }
+            },
+            "huawei_luna_s1_17_kwh": {
+              "Nu": {
+                "Nu": 130937.15,
+                "Da": 136693.29
+              },
+              "Da": {
+                "Nu": 138552.36,
+                "Da": 144308.5
+              }
+            },
+            "huawei_luna_s1_19_kwh": {
+              "Nu": {
+                "Nu": 137056.94,
+                "Da": 142813.08
+              },
+              "Da": {
+                "Nu": 144672.16,
+                "Da": 150428.29
+              }
+            },
+            "huawei_luna_s1_21_kwh": {
+              "Nu": {
+                "Nu": 143176.73,
+                "Da": 148932.87
+              },
+              "Da": {
+                "Nu": 150791.95,
+                "Da": 156548.09
+              }
+            }
+          }
+        },
+        "20": {
+          "panels": 46,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 121345.71,
+                "Da": 127101.85
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "huawei_luna_s0_5_kwh": {
+              "Nu": {
+                "Nu": 138458.57,
+                "Da": 144214.71
+              },
+              "Da": {
+                "Nu": 146073.79,
+                "Da": 151829.93
+              }
+            },
+            "huawei_luna_s1_5_kwh": {
+              "Nu": {
+                "Nu": 136015.93,
+                "Da": 141772.07
+              },
+              "Da": {
+                "Nu": 143631.14,
+                "Da": 149387.28
+              }
+            },
+            "huawei_luna_s1_7_kwh": {
+              "Nu": {
+                "Nu": 142135.72,
+                "Da": 147891.86
+              },
+              "Da": {
+                "Nu": 149750.94,
+                "Da": 155507.08
+              }
+            },
+            "huawei_luna_s0_10_kwh": {
+              "Nu": {
+                "Nu": 155571.43,
+                "Da": 161327.57
+              },
+              "Da": {
+                "Nu": 163186.64,
+                "Da": 168942.78
+              }
+            },
+            "huawei_luna_s1_10_kwh": {
+              "Nu": {
+                "Nu": 145195.93,
+                "Da": 150952.07
+              },
+              "Da": {
+                "Nu": 152811.14,
+                "Da": 158567.28
+              }
+            },
+            "huawei_luna_s1_12_kwh": {
+              "Nu": {
+                "Nu": 151315.72,
+                "Da": 157071.86
+              },
+              "Da": {
+                "Nu": 158930.94,
+                "Da": 164687.08
+              }
+            },
+            "huawei_luna_s1_14_kwh": {
+              "Nu": {
+                "Nu": 157435.51,
+                "Da": 163191.65
+              },
+              "Da": {
+                "Nu": 165050.73,
+                "Da": 170806.87
+              }
+            },
+            "huawei_luna_s1_15_kwh": {
+              "Nu": {
+                "Nu": 154375.93,
+                "Da": 160132.07
+              },
+              "Da": {
+                "Nu": 161991.14,
+                "Da": 167747.28
+              }
+            },
+            "huawei_luna_s1_17_kwh": {
+              "Nu": {
+                "Nu": 160495.72,
+                "Da": 166251.86
+              },
+              "Da": {
+                "Nu": 168110.94,
+                "Da": 173867.08
+              }
+            },
+            "huawei_luna_s1_19_kwh": {
+              "Nu": {
+                "Nu": 166615.51,
+                "Da": 172371.65
+              },
+              "Da": {
+                "Nu": 174230.73,
+                "Da": 179986.87
+              }
+            },
+            "huawei_luna_s1_21_kwh": {
+              "Nu": {
+                "Nu": 172735.31,
+                "Da": 178491.45
+              },
+              "Da": {
+                "Nu": 180350.52,
+                "Da": 186106.66
+              }
+            }
+          }
+        }
+      }
+    },
+    "Fronius": {
+      "battery_options": [
+        {
+          "code": "fara_baterie",
+          "label": "Fără baterie",
+          "family": null,
+          "status": "Exact",
+          "nominal_kwh": null
+        },
+        {
+          "code": "byd_hvs_5_1_kwh",
+          "label": "BYD HVS 5.1 kWh",
+          "family": "BYD Battery-Box Premium HVS",
+          "status": "Exact",
+          "nominal_kwh": 5.1
+        },
+        {
+          "code": "byd_hvs_10_2_kwh",
+          "label": "BYD HVS 10.2 kWh",
+          "family": "BYD Battery-Box Premium HVS",
+          "status": "Exact",
+          "nominal_kwh": 10.2
+        },
+        {
+          "code": "byd_hvm_13_8_kwh",
+          "label": "BYD HVM 13.8 kWh",
+          "family": "BYD Battery-Box Premium HVM",
+          "status": "Closest standard",
+          "nominal_kwh": 13.8
+        }
+      ],
+      "power_options": [
+        5.2,
+        6.37,
+        7.28,
+        8.2,
+        9.1,
+        12.0,
+        15.0,
+        20.0
+      ],
+      "prices": {
+        "5.2": {
+          "panels": 12,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 37897.2,
+                "Da": 43653.34
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "byd_hvs_5_1_kwh": {
+              "Nu": {
+                "Nu": 56565.77,
+                "Da": 62321.91
+              },
+              "Da": {
+                "Nu": 64180.99,
+                "Da": 69937.13
+              }
+            },
+            "byd_hvs_10_2_kwh": {
+              "Nu": {
+                "Nu": 75234.34,
+                "Da": 80990.48
+              },
+              "Da": {
+                "Nu": 82849.55,
+                "Da": 88605.69
+              }
+            },
+            "byd_hvm_13_8_kwh": {
+              "Nu": {
+                "Nu": 91401.33,
+                "Da": 97157.47
+              },
+              "Da": {
+                "Nu": 99016.54,
+                "Da": 104772.68
+              }
+            }
+          }
+        },
+        "6.37": {
+          "panels": 14,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 45724.0,
+                "Da": 51480.13
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "byd_hvs_5_1_kwh": {
+              "Nu": {
+                "Nu": 64392.57,
+                "Da": 70148.71
+              },
+              "Da": {
+                "Nu": 72007.79,
+                "Da": 77763.92
+              }
+            },
+            "byd_hvs_10_2_kwh": {
+              "Nu": {
+                "Nu": 83061.14,
+                "Da": 88817.28
+              },
+              "Da": {
+                "Nu": 90676.36,
+                "Da": 96432.5
+              }
+            },
+            "byd_hvm_13_8_kwh": {
+              "Nu": {
+                "Nu": 99228.12,
+                "Da": 104984.26
+              },
+              "Da": {
+                "Nu": 106843.34,
+                "Da": 112599.48
+              }
+            }
+          }
+        },
+        "7.28": {
+          "panels": 16,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 51811.51,
+                "Da": 57567.64
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "byd_hvs_5_1_kwh": {
+              "Nu": {
+                "Nu": 70480.08,
+                "Da": 76236.22
+              },
+              "Da": {
+                "Nu": 78095.29,
+                "Da": 83851.43
+              }
+            },
+            "byd_hvs_10_2_kwh": {
+              "Nu": {
+                "Nu": 89148.65,
+                "Da": 94904.79
+              },
+              "Da": {
+                "Nu": 96763.87,
+                "Da": 102520.01
+              }
+            },
+            "byd_hvm_13_8_kwh": {
+              "Nu": {
+                "Nu": 105315.63,
+                "Da": 111071.77
+              },
+              "Da": {
+                "Nu": 112930.85,
+                "Da": 118686.99
+              }
+            }
+          }
+        },
+        "8.2": {
+          "panels": 18,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 57965.91,
+                "Da": 63722.05
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "byd_hvs_5_1_kwh": {
+              "Nu": {
+                "Nu": 76634.49,
+                "Da": 82390.63
+              },
+              "Da": {
+                "Nu": 84249.7,
+                "Da": 90005.84
+              }
+            },
+            "byd_hvs_10_2_kwh": {
+              "Nu": {
+                "Nu": 95303.06,
+                "Da": 101059.2
+              },
+              "Da": {
+                "Nu": 102918.28,
+                "Da": 108674.41
+              }
+            },
+            "byd_hvm_13_8_kwh": {
+              "Nu": {
+                "Nu": 111470.04,
+                "Da": 117226.18
+              },
+              "Da": {
+                "Nu": 119085.25,
+                "Da": 124841.39
+              }
+            }
+          }
+        },
+        "9.1": {
+          "panels": 20,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 63986.53,
+                "Da": 69742.66
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "byd_hvs_5_1_kwh": {
+              "Nu": {
+                "Nu": 82655.1,
+                "Da": 88411.24
+              },
+              "Da": {
+                "Nu": 90270.31,
+                "Da": 96026.45
+              }
+            },
+            "byd_hvs_10_2_kwh": {
+              "Nu": {
+                "Nu": 101323.67,
+                "Da": 107079.81
+              },
+              "Da": {
+                "Nu": 108938.89,
+                "Da": 114695.03
+              }
+            },
+            "byd_hvm_13_8_kwh": {
+              "Nu": {
+                "Nu": 117490.65,
+                "Da": 123246.79
+              },
+              "Da": {
+                "Nu": 125105.87,
+                "Da": 130862.01
+              }
+            }
+          }
+        },
+        "12": {
+          "panels": 26,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 83386.29,
+                "Da": 89142.43
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "byd_hvs_5_1_kwh": {
+              "Nu": {
+                "Nu": 102054.86,
+                "Da": 107811.0
+              },
+              "Da": {
+                "Nu": 109670.08,
+                "Da": 115426.21
+              }
+            },
+            "byd_hvs_10_2_kwh": {
+              "Nu": {
+                "Nu": 120723.43,
+                "Da": 126479.56
+              },
+              "Da": {
+                "Nu": 128338.64,
+                "Da": 134094.78
+              }
+            },
+            "byd_hvm_13_8_kwh": {
+              "Nu": {
+                "Nu": 136890.41,
+                "Da": 142646.55
+              },
+              "Da": {
+                "Nu": 144505.63,
+                "Da": 150261.77
+              }
+            }
+          }
+        },
+        "15": {
+          "panels": 34,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 103455.0,
+                "Da": 109211.14
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "byd_hvs_5_1_kwh": {
+              "Nu": {
+                "Nu": 122123.57,
+                "Da": 127879.71
+              },
+              "Da": {
+                "Nu": 129738.79,
+                "Da": 135494.93
+              }
+            },
+            "byd_hvs_10_2_kwh": {
+              "Nu": {
+                "Nu": 140792.14,
+                "Da": 146548.28
+              },
+              "Da": {
+                "Nu": 148407.35,
+                "Da": 154163.49
+              }
+            },
+            "byd_hvm_13_8_kwh": {
+              "Nu": {
+                "Nu": 156959.13,
+                "Da": 162715.27
+              },
+              "Da": {
+                "Nu": 164574.34,
+                "Da": 170330.48
+              }
+            }
+          }
+        },
+        "20": {
+          "panels": 46,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 136902.86,
+                "Da": 142659.0
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "byd_hvs_5_1_kwh": {
+              "Nu": {
+                "Nu": 155571.43,
+                "Da": 161327.57
+              },
+              "Da": {
+                "Nu": 163186.64,
+                "Da": 168942.78
+              }
+            },
+            "byd_hvs_10_2_kwh": {
+              "Nu": {
+                "Nu": 174240.0,
+                "Da": 179996.14
+              },
+              "Da": {
+                "Nu": 181855.21,
+                "Da": 187611.35
+              }
+            },
+            "byd_hvm_13_8_kwh": {
+              "Nu": {
+                "Nu": 190406.98,
+                "Da": 196163.12
+              },
+              "Da": {
+                "Nu": 198022.19,
+                "Da": 203778.33
+              }
+            }
+          }
+        }
+      }
+    },
+    "Victron": {
+      "battery_options": [
+        {
+          "code": "fara_baterie",
+          "label": "Fără baterie",
+          "family": null,
+          "status": "Exact",
+          "nominal_kwh": null
+        },
+        {
+          "code": "dyness_powerbrick_14_336_kwh",
+          "label": "Dyness PowerBrick 14.336 kWh",
+          "family": "Dyness PowerBrick",
+          "status": "Exact",
+          "nominal_kwh": 14.336
+        },
+        {
+          "code": "2_x_dyness_powerbrick_14_336_kwh",
+          "label": "2 x Dyness PowerBrick 14.336 kWh",
+          "family": "Dyness PowerBrick",
+          "status": "Exact",
+          "nominal_kwh": 28.672
+        }
+      ],
+      "power_options": [
+        5.2,
+        6.37,
+        7.28,
+        8.2,
+        9.1,
+        12.0,
+        15.0,
+        20.0
+      ],
+      "prices": {
+        "5.2": {
+          "panels": 12,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 33043.37,
+                "Da": 38799.51
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 57566.1,
+                "Da": 63322.24
+              },
+              "Da": {
+                "Nu": 65181.31,
+                "Da": 70937.45
+              }
+            },
+            "2_x_dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 82088.82,
+                "Da": 87844.96
+              },
+              "Da": {
+                "Nu": 89704.04,
+                "Da": 95460.17
+              }
+            }
+          }
+        },
+        "6.37": {
+          "panels": 14,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 39778.06,
+                "Da": 45534.19
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 64300.78,
+                "Da": 70056.92
+              },
+              "Da": {
+                "Nu": 71915.99,
+                "Da": 77672.13
+              }
+            },
+            "2_x_dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 88823.51,
+                "Da": 94579.65
+              },
+              "Da": {
+                "Nu": 96438.73,
+                "Da": 102194.86
+              }
+            }
+          }
+        },
+        "7.28": {
+          "panels": 16,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 45016.15,
+                "Da": 50772.28
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 69538.87,
+                "Da": 75295.01
+              },
+              "Da": {
+                "Nu": 77154.08,
+                "Da": 82910.22
+              }
+            },
+            "2_x_dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 94061.6,
+                "Da": 99817.74
+              },
+              "Da": {
+                "Nu": 101676.82,
+                "Da": 107432.95
+              }
+            }
+          }
+        },
+        "8.2": {
+          "panels": 18,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 50311.8,
+                "Da": 56067.94
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 74834.52,
+                "Da": 80590.66
+              },
+              "Da": {
+                "Nu": 82449.74,
+                "Da": 88205.88
+              }
+            },
+            "2_x_dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 99357.25,
+                "Da": 105113.39
+              },
+              "Da": {
+                "Nu": 106972.46,
+                "Da": 112728.6
+              }
+            }
+          }
+        },
+        "9.1": {
+          "panels": 20,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 55492.33,
+                "Da": 61248.46
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 80015.05,
+                "Da": 85771.19
+              },
+              "Da": {
+                "Nu": 87630.26,
+                "Da": 93386.4
+              }
+            },
+            "2_x_dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 104537.78,
+                "Da": 110293.92
+              },
+              "Da": {
+                "Nu": 112153.0,
+                "Da": 117909.14
+              }
+            }
+          }
+        },
+        "12": {
+          "panels": 26,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 72185.14,
+                "Da": 77941.28
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 96707.87,
+                "Da": 102464.01
+              },
+              "Da": {
+                "Nu": 104323.09,
+                "Da": 110079.22
+              }
+            },
+            "2_x_dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 121230.59,
+                "Da": 126986.73
+              },
+              "Da": {
+                "Nu": 128845.81,
+                "Da": 134601.95
+              }
+            }
+          }
+        },
+        "15": {
+          "panels": 34,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 89453.57,
+                "Da": 95209.71
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 113976.3,
+                "Da": 119732.44
+              },
+              "Da": {
+                "Nu": 121591.51,
+                "Da": 127347.65
+              }
+            },
+            "2_x_dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 138499.02,
+                "Da": 144255.16
+              },
+              "Da": {
+                "Nu": 146114.23,
+                "Da": 151870.37
+              }
+            }
+          }
+        },
+        "20": {
+          "panels": 46,
+          "batteries": {
+            "fara_baterie": {
+              "Nu": {
+                "Nu": 118234.29,
+                "Da": 123990.43
+              },
+              "Da": {
+                "Nu": null,
+                "Da": null
+              }
+            },
+            "dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 142757.01,
+                "Da": 148513.15
+              },
+              "Da": {
+                "Nu": 150372.22,
+                "Da": 156128.36
+              }
+            },
+            "2_x_dyness_powerbrick_14_336_kwh": {
+              "Nu": {
+                "Nu": 167279.73,
+                "Da": 173035.87
+              },
+              "Da": {
+                "Nu": 174894.95,
+                "Da": 180651.09
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
